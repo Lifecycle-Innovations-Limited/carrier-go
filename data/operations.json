@@ -1,0 +1,2721 @@
+[
+  {
+    "id": "list_reseller_accounts",
+    "method": "GET",
+    "path": "/v1/accounts",
+    "tag": "Accounts",
+    "summary": "List all reseller sub-accounts",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_reseller_info",
+    "method": "GET",
+    "path": "/v1/reseller",
+    "tag": "Reseller",
+    "summary": "Get authenticated reseller profile and balance",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "esim_status_per_account",
+    "method": "GET",
+    "path": "/v1/accounts/{accountId}/esim-status",
+    "tag": "Accounts",
+    "summary": "Get eSIM provisioning status counts for an account",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "accountId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_sponsors",
+    "method": "GET",
+    "path": "/v1/sponsors",
+    "tag": "Reseller",
+    "summary": "List sponsor entries for the reseller",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_steering_lists",
+    "method": "GET",
+    "path": "/v1/steering-lists",
+    "tag": "Network",
+    "summary": "List network steering lists for the reseller",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_subscriber",
+    "method": "GET",
+    "path": "/v1/subscribers/{iccid}",
+    "tag": "Subscribers",
+    "summary": "Get subscriber details by ICCID",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_subscribers",
+    "method": "GET",
+    "path": "/v1/subscribers",
+    "tag": "Subscribers",
+    "summary": "List subscribers with optional filters",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "q",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "create_subscriber",
+    "method": "POST",
+    "path": "/v1/subscribers",
+    "tag": "Subscribers",
+    "summary": "Subscriber creation is not available on the OCS",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_sim_provider_status",
+    "method": "GET",
+    "path": "/v1/subscribers/{iccid}/sim-status",
+    "tag": "Subscribers",
+    "summary": "Get SIM provider status for a subscriber",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "change_sim_status",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/sim-status",
+    "tag": "Subscribers",
+    "summary": "Change SIM card status at the platform level (admin only)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "get_subscriber_location",
+    "method": "GET",
+    "path": "/v1/subscribers/{iccid}/location",
+    "tag": "Subscribers",
+    "summary": "Get last known location of a subscriber",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "hlr_get_bitrate",
+    "method": "GET",
+    "path": "/v1/subscribers/{iccid}/bitrate",
+    "tag": "Subscribers",
+    "summary": "Get HLR bitrate limit for a subscriber",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "hlr_set_bitrate",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/bitrate",
+    "tag": "Subscribers",
+    "summary": "Set HLR bitrate limit for a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_subscriber_packages",
+    "method": "GET",
+    "path": "/v1/subscribers/{iccid}/packages",
+    "tag": "Subscribers",
+    "summary": "List active data packages for a subscriber",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "assign_package",
+    "method": "POST",
+    "path": "/v1/subscribers/{iccid}/packages",
+    "tag": "Subscribers",
+    "summary": "Assign a one-time data package to a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "clean_all_packages",
+    "method": "DELETE",
+    "path": "/v1/subscribers/{iccid}/packages",
+    "tag": "Subscribers",
+    "summary": "Remove all packages from a subscriber (admin only)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "list_package_templates",
+    "method": "GET",
+    "path": "/v1/package-templates",
+    "tag": "Packages",
+    "summary": "List available package templates",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "create_package_template",
+    "method": "POST",
+    "path": "/v1/package-templates",
+    "tag": "Packages",
+    "summary": "Create a new package template",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_location_zones",
+    "method": "GET",
+    "path": "/v1/location-zones",
+    "tag": "Network",
+    "summary": "List location zones for the reseller",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "create_location_zone",
+    "method": "POST",
+    "path": "/v1/location-zones",
+    "tag": "Network",
+    "summary": "Create a new location zone",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_detailed_location_zones",
+    "method": "GET",
+    "path": "/v1/location-zones/detailed",
+    "tag": "Network",
+    "summary": "List location zones with full country/network detail",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_destination_prefixes",
+    "method": "GET",
+    "path": "/v1/destination-prefixes",
+    "tag": "Network",
+    "summary": "List destination prefixes for routing configuration",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "subscriber_usage",
+    "method": "POST",
+    "path": "/v1/subscribers/{iccid}/usage",
+    "tag": "Subscribers",
+    "summary": "Get subscriber data usage over a date range",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "subscriber_network_events",
+    "method": "POST",
+    "path": "/v1/subscribers/{iccid}/network-events",
+    "tag": "Subscribers",
+    "summary": "Get subscriber network events over a date range",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "subscriber_active_period",
+    "method": "GET",
+    "path": "/v1/subscribers/{iccid}/active-period",
+    "tag": "Subscribers",
+    "summary": "Get the active period for a subscriber",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_tariff",
+    "method": "GET",
+    "path": "/v1/tariffs/{resellerId}",
+    "tag": "Network",
+    "summary": "Get tariff rules for a reseller",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "resellerId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_network_profiles",
+    "method": "GET",
+    "path": "/v1/network-profiles",
+    "tag": "Network",
+    "summary": "List network profiles available to the reseller",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_subscriber_balance",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/balance",
+    "tag": "Subscribers",
+    "summary": "Add or set the prepaid balance for a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_subscriber_status",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/status",
+    "tag": "Subscribers",
+    "summary": "Activate, suspend, or deactivate a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_subscriber_contact_info",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/contact",
+    "tag": "Subscribers",
+    "summary": "Update subscriber contact information",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "set_subscriber_traffic_restrictions",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/traffic-restrictions",
+    "tag": "Subscribers",
+    "summary": "Set data/voice/SMS traffic restrictions for a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_subscriber_steering_list",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/steering-list",
+    "tag": "Subscribers",
+    "summary": "Assign a steering list to a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "move_subscriber_range_to_account",
+    "method": "POST",
+    "path": "/v1/accounts/{accountId}/move-subscribers",
+    "tag": "Accounts",
+    "summary": "Move a subscriber range to a different account",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "accountId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "assign_recurring_package",
+    "method": "POST",
+    "path": "/v1/subscribers/{iccid}/packages/recurring",
+    "tag": "Subscribers",
+    "summary": "Assign a recurring data package to a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_package_limits",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/packages/{packageId}/limits",
+    "tag": "Subscribers",
+    "summary": "Modify data limits for an assigned package",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      },
+      {
+        "name": "packageId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_package_expiry",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/packages/{packageId}/expiry",
+    "tag": "Subscribers",
+    "summary": "Modify the expiry date of an assigned package",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      },
+      {
+        "name": "packageId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_package_status",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/packages/{packageId}/status",
+    "tag": "Subscribers",
+    "summary": "Pause or resume an assigned package",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      },
+      {
+        "name": "packageId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "stop_resume_recurring_package",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/packages/{packageId}/recurring-status",
+    "tag": "Subscribers",
+    "summary": "Stop or resume a recurring package subscription",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      },
+      {
+        "name": "packageId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_account_balance",
+    "method": "PUT",
+    "path": "/v1/accounts/{accountId}/balance",
+    "tag": "Accounts",
+    "summary": "Modify account-level balance (admin only)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "accountId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "delete_subscriber_package",
+    "method": "DELETE",
+    "path": "/v1/subscribers/{iccid}/packages/{packageId}",
+    "tag": "Subscribers",
+    "summary": "Delete a subscriber package (admin only)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      },
+      {
+        "name": "packageId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "modify_template_core",
+    "method": "PUT",
+    "path": "/v1/package-templates/{templateId}/core",
+    "tag": "Packages",
+    "summary": "Modify core settings of a package template (admin only)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "templateId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "modify_template_recurring",
+    "method": "PUT",
+    "path": "/v1/package-templates/{templateId}/recurring",
+    "tag": "Packages",
+    "summary": "Modify recurring settings of a package template (admin only)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "templateId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "modify_template_throttling",
+    "method": "PUT",
+    "path": "/v1/package-templates/{templateId}/throttling",
+    "tag": "Packages",
+    "summary": "Modify throttling settings of a package template (admin only)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "templateId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "send_sms",
+    "method": "POST",
+    "path": "/v1/subscribers/{iccid}/sms",
+    "tag": "Subscribers",
+    "summary": "Send an MT SMS to a subscriber (admin only)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "fleet_health",
+    "method": "POST",
+    "path": "/v1/intelligence/fleet-health",
+    "tag": "Intelligence",
+    "summary": "Aggregate fleet health: active/suspended/inactive counts, low balance alerts",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "churn_risk",
+    "method": "POST",
+    "path": "/v1/intelligence/churn-risk",
+    "tag": "Intelligence",
+    "summary": "Identify subscribers at churn risk based on usage patterns",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "audit_network_coverage",
+    "method": "POST",
+    "path": "/v1/intelligence/audit-network-coverage",
+    "tag": "Intelligence",
+    "summary": "Audit network coverage against location zones",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "diagnose_subscriber",
+    "method": "POST",
+    "path": "/v1/intelligence/diagnose-subscriber",
+    "tag": "Intelligence",
+    "summary": "Deep-dive diagnostic for a single subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "detect_usage_anomalies",
+    "method": "POST",
+    "path": "/v1/intelligence/detect-usage-anomalies",
+    "tag": "Intelligence",
+    "summary": "Detect unusual usage spikes or drops across the fleet",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "optimize_package",
+    "method": "POST",
+    "path": "/v1/intelligence/optimize-package",
+    "tag": "Intelligence",
+    "summary": "Recommend optimal package based on subscriber usage history",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "marketing_intelligence",
+    "method": "POST",
+    "path": "/v1/intelligence/marketing-intelligence",
+    "tag": "Intelligence",
+    "summary": "Segment subscribers for targeted campaigns",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "high_cost_subscribers",
+    "method": "POST",
+    "path": "/v1/intelligence/high-cost-subscribers",
+    "tag": "Intelligence",
+    "summary": "Identify highest-cost subscribers for cost optimization",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "high_cost_subscribers_method_guard",
+    "method": "GET",
+    "path": "/v1/intelligence/high-cost-subscribers",
+    "tag": "Intelligence",
+    "summary": "GET is not supported. Use POST.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "detect_country_entry",
+    "method": "POST",
+    "path": "/v1/intelligence/detect-country-entry",
+    "tag": "Intelligence",
+    "summary": "Resolve a subscriber's current country from networkInfo.lastMcc and diff it against expectedCountry",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_intelligence_schedules",
+    "method": "GET",
+    "path": "/v1/intelligence/schedules",
+    "tag": "Intelligence",
+    "summary": "List scheduled intelligence reports for the caller's organization",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "create_intelligence_schedule",
+    "method": "POST",
+    "path": "/v1/intelligence/schedules",
+    "tag": "Intelligence",
+    "summary": "Schedule one of the 8 composites. Returns the webhook secret once.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "delete_intelligence_schedule",
+    "method": "DELETE",
+    "path": "/v1/intelligence/schedules/{id}",
+    "tag": "Intelligence",
+    "summary": "Delete a scheduled report and its share link",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "run_intelligence_schedule",
+    "method": "POST",
+    "path": "/v1/intelligence/schedules/{id}/run",
+    "tag": "Intelligence",
+    "summary": "Run a schedule now. Does not move the next cron boundary.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_intelligence_schedule_report",
+    "method": "GET",
+    "path": "/v1/intelligence/schedules/{id}/report",
+    "tag": "Intelligence",
+    "summary": "Latest report for a schedule, unredacted, for the owning organization",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_intelligence_share",
+    "method": "GET",
+    "path": "/v1/intelligence/share/{token}",
+    "tag": "Intelligence",
+    "summary": "Public branded report. Subscriber identifiers are redacted. ?format=html returns a page.",
+    "security": "public",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "token",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "format",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_connect_begin",
+    "method": "POST",
+    "path": "/v1/operator-billing/connect/begin",
+    "tag": "Operator Billing",
+    "summary": "Initiate Stripe Connect onboarding (free-tier; Clerk auth only)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_connect_oauth_begin",
+    "method": "POST",
+    "path": "/v1/operator-billing/connect/oauth/begin",
+    "tag": "Operator Billing",
+    "summary": "Start Standard Connect OAuth (existing verified Stripe, no second KYC)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_connect_oauth_complete",
+    "method": "POST",
+    "path": "/v1/operator-billing/connect/oauth/complete",
+    "tag": "Operator Billing",
+    "summary": "Finish Standard Connect OAuth and attach stripe_user_id",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_connect_status",
+    "method": "GET",
+    "path": "/v1/operator-billing/connect/status",
+    "tag": "Operator Billing",
+    "summary": "Get Stripe Connect account status and requirements",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_connect_dashboard_link",
+    "method": "POST",
+    "path": "/v1/operator-billing/connect/dashboard-link",
+    "tag": "Operator Billing",
+    "summary": "Generate Stripe Express Dashboard login link",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_list_payouts",
+    "method": "GET",
+    "path": "/v1/operator-billing/payouts",
+    "tag": "Operator Billing",
+    "summary": "List payout history (paginated)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "required": false
+      },
+      {
+        "name": "status",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_create_manual_payout",
+    "method": "POST",
+    "path": "/v1/operator-billing/payouts/manual",
+    "tag": "Operator Billing",
+    "summary": "Create a manual payout to the connected bank account",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_get_payout_schedule",
+    "method": "GET",
+    "path": "/v1/operator-billing/payouts/schedule",
+    "tag": "Operator Billing",
+    "summary": "Get current payout schedule",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_update_payout_schedule",
+    "method": "PATCH",
+    "path": "/v1/operator-billing/payouts/schedule",
+    "tag": "Operator Billing",
+    "summary": "Update payout schedule (daily / weekly / monthly)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_list_fees",
+    "method": "GET",
+    "path": "/v1/operator-billing/fees",
+    "tag": "Operator Billing",
+    "summary": "List Carrier platform fees earned (admin scope required)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_list_refunds",
+    "method": "GET",
+    "path": "/v1/operator-billing/refunds",
+    "tag": "Operator Billing",
+    "summary": "List refunds issued by this operator",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_create_refund",
+    "method": "POST",
+    "path": "/v1/operator-billing/refunds",
+    "tag": "Operator Billing",
+    "summary": "Issue a refund against a Stripe charge",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_list_disputes",
+    "method": "GET",
+    "path": "/v1/operator-billing/disputes",
+    "tag": "Operator Billing",
+    "summary": "List active and historical disputes",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_submit_dispute_evidence",
+    "method": "POST",
+    "path": "/v1/operator-billing/disputes/{id}/evidence",
+    "tag": "Operator Billing",
+    "summary": "Submit evidence for a dispute",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_list_fraud_reviews",
+    "method": "GET",
+    "path": "/v1/operator-billing/fraud/reviews",
+    "tag": "Operator Billing",
+    "summary": "List Radar review queue",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "required": false
+      },
+      {
+        "name": "open",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_approve_fraud_review",
+    "method": "POST",
+    "path": "/v1/operator-billing/fraud/reviews/{id}/approve",
+    "tag": "Operator Billing",
+    "summary": "Approve a Radar review (admin scope required)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_decline_fraud_review",
+    "method": "POST",
+    "path": "/v1/operator-billing/fraud/reviews/{id}/decline",
+    "tag": "Operator Billing",
+    "summary": "Decline a Radar review (admin scope required)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_list_value_lists",
+    "method": "GET",
+    "path": "/v1/operator-billing/fraud/value-lists",
+    "tag": "Operator Billing",
+    "summary": "List Radar block/allow value lists",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_add_value_list_item",
+    "method": "POST",
+    "path": "/v1/operator-billing/fraud/value-lists/items",
+    "tag": "Operator Billing",
+    "summary": "Add an item to a Radar block/allow list (admin scope required)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_identity_status",
+    "method": "GET",
+    "path": "/v1/operator-billing/identity/status",
+    "tag": "Identity",
+    "summary": "Get Stripe Identity KYC verification status for this operator",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_identity_create_session",
+    "method": "POST",
+    "path": "/v1/operator-billing/identity/sessions",
+    "tag": "Identity",
+    "summary": "Record a new Stripe Identity verification session",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_identity_update_session",
+    "method": "PATCH",
+    "path": "/v1/operator-billing/identity/sessions/{id}",
+    "tag": "Identity",
+    "summary": "Update a Stripe Identity session status (internal API key only)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_list_promotions",
+    "method": "GET",
+    "path": "/v1/operator-billing/promotions",
+    "tag": "Promotions",
+    "summary": "List promotions (coupons/promo codes) for this operator",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_create_promotion",
+    "method": "POST",
+    "path": "/v1/operator-billing/promotions",
+    "tag": "Promotions",
+    "summary": "Persist a new promotion record (Stripe coupon already created by console)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "signup_start",
+    "method": "POST",
+    "path": "/v1/signup",
+    "tag": "Sign-up",
+    "summary": "Create a Carrier account and send the email verification code",
+    "security": "public",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "signup_verify",
+    "method": "POST",
+    "path": "/v1/signup/verify",
+    "tag": "Sign-up",
+    "summary": "Submit the emailed code and create the organization",
+    "security": "public",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "create_api_key",
+    "method": "POST",
+    "path": "/v1/api-keys",
+    "tag": "API Keys",
+    "summary": "Mint an ak_ API key for this organization (secret returned once)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_onboarding_state",
+    "method": "GET",
+    "path": "/v1/onboarding",
+    "tag": "Onboarding",
+    "summary": "Read this org's onboarding progress",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "onboarding_save_org",
+    "method": "POST",
+    "path": "/v1/onboarding/org",
+    "tag": "Onboarding",
+    "summary": "Save operator details (step 1)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "onboarding_connect_ocs_token",
+    "method": "POST",
+    "path": "/v1/onboarding/ocs-connect",
+    "tag": "Onboarding",
+    "summary": "Connect a BYO eSIMVault token (step 2)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "onboarding_start_managed_account",
+    "method": "POST",
+    "path": "/v1/onboarding/managed-account",
+    "tag": "Onboarding",
+    "summary": "Provision a managed OCS sub-account (step 2, primary path)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "onboarding_save_plan",
+    "method": "POST",
+    "path": "/v1/onboarding/plan",
+    "tag": "Onboarding",
+    "summary": "Record the starting plan template (step 3)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "onboarding_skip_plan",
+    "method": "POST",
+    "path": "/v1/onboarding/plan/skip",
+    "tag": "Onboarding",
+    "summary": "Skip the plan step (step 3)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "onboarding_test_esim",
+    "method": "POST",
+    "path": "/v1/onboarding/test-esim",
+    "tag": "Onboarding",
+    "summary": "Preview one eSIM from the connected fleet (step 4)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "onboarding_complete",
+    "method": "POST",
+    "path": "/v1/onboarding/complete",
+    "tag": "Onboarding",
+    "summary": "Mark onboarding complete (step 5)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_stripe_webhook",
+    "method": "POST",
+    "path": "/v1/operator-billing/stripe-webhook",
+    "tag": "Webhooks",
+    "summary": "Stripe Connect lifecycle webhook (no bearer auth — Stripe-Signature header required)",
+    "security": "public",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "stripe-signature",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "receive_bridge4ip_webhook",
+    "method": "POST",
+    "path": "/v1/webhooks/bridge4ip",
+    "tag": "Webhooks",
+    "summary": "Receive Bridge4IP push event (usage, eSIM status, location)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "affect_subscriber_phone_number",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/phone-number",
+    "tag": "Subscribers",
+    "summary": "Assign a fake or real MSISDN to a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_subscriber_mobile_plan",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/mobile-plan",
+    "tag": "Subscribers",
+    "summary": "Change the mobile plan assigned to a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_subscriber_voip_plan",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/voip-plan",
+    "tag": "Subscribers",
+    "summary": "Change the VoIP plan assigned to a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "push_steering_to_subscriber",
+    "method": "POST",
+    "path": "/v1/subscribers/{iccid}/steering-list/push",
+    "tag": "Subscribers",
+    "summary": "Push the assigned steering list down to the subscriber's SIM",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "modify_subscriber_package_active_period",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/packages/{packageId}/active-period",
+    "tag": "Subscribers",
+    "summary": "Change the active period of a prepaid package on a subscriber",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      },
+      {
+        "name": "packageId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_subscriber_location_by_cell_id",
+    "method": "GET",
+    "path": "/v1/subscribers/{iccid}/cell-location",
+    "tag": "Subscribers",
+    "summary": "Resolve the subscriber's last radio cell tuple to lat/lon via Bridge4IP GeoSense. Returns 404 when that radio has no cell tower tuple.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "reset_subscriber_gz_counter",
+    "method": "POST",
+    "path": "/v1/subscribers/{iccid}/gz-counter/reset",
+    "tag": "Subscribers",
+    "summary": "Reset the Green Zone volume counter for a subscriber (admin only, irreversible)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "list_destination_lists",
+    "method": "GET",
+    "path": "/v1/destination-lists",
+    "tag": "Network",
+    "summary": "List destination lists with full prefix detail",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "resellerId",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "list_subscriber_voip_tariff",
+    "method": "GET",
+    "path": "/v1/voip-tariffs",
+    "tag": "Network",
+    "summary": "List the VoIP tariff catalog available to a reseller",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "resellerId",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "list_voip_tariff_rule",
+    "method": "GET",
+    "path": "/v1/voip-tariffs/{voipPlanId}/rules",
+    "tag": "Network",
+    "summary": "List the rate rules for one VoIP plan",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "voipPlanId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "change_network_profile_of_location_zone",
+    "method": "PUT",
+    "path": "/v1/location-zones/{locationZoneId}/network-profile",
+    "tag": "Network",
+    "summary": "Attach or change the network profile on an existing location zone. Admin scope and a confirm token, because this addresses a zone by id and other tenants may route through it.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "locationZoneId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "get_network_default",
+    "method": "GET",
+    "path": "/v1/network-default",
+    "tag": "Network",
+    "summary": "Read the org network default (cheapest_available, all or custom) and what applies today. New assignments only.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "set_network_default",
+    "method": "PUT",
+    "path": "/v1/network-default",
+    "tag": "Network",
+    "summary": "Set the org network default. Stored only; touches no SIM and writes nothing to OCS. Applies to new assignments.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "plan_network_default",
+    "method": "POST",
+    "path": "/v1/network-default/plan",
+    "tag": "Network",
+    "summary": "Plan which networks a SIM gets in given countries: the cheapest available by default, unless the org or this call overrides it. Read only; falls back to all networks with an explicit warning when the tariff is missing.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "carrier_webhook_config",
+    "method": "GET",
+    "path": "/v1/reseller/webhook-config",
+    "tag": "Reseller",
+    "summary": "Read the Bridge4IP relay flags and notification webhooks for this reseller",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "resellerId",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "ai_chat",
+    "method": "POST",
+    "path": "/v1/ai/chat",
+    "tag": "AI",
+    "summary": "Ask the assistant about your fleet. Streams the answer.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "ai_insights",
+    "method": "POST",
+    "path": "/v1/ai/insights",
+    "tag": "AI",
+    "summary": "Generated insight cards for the caller's fleet",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "ai_quota",
+    "method": "GET",
+    "path": "/v1/ai/quota",
+    "tag": "AI",
+    "summary": "AI allowance remaining. Reads without consuming.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_invoice_periods",
+    "method": "GET",
+    "path": "/v1/invoices/periods",
+    "tag": "Billing",
+    "summary": "Billing periods for the caller's org, newest first",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_billing_config",
+    "method": "GET",
+    "path": "/v1/invoices/config",
+    "tag": "Billing",
+    "summary": "Billing config for the caller's org",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "update_billing_config",
+    "method": "PUT",
+    "path": "/v1/invoices/config",
+    "tag": "Billing",
+    "summary": "Update billing config. Requires the 'write' scope.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "stripe_connect_begin",
+    "method": "POST",
+    "path": "/v1/invoices/stripe/connect/begin",
+    "tag": "Billing",
+    "summary": "Start Stripe Connect onboarding (free-tier; Clerk auth only).",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "stripe_connect_status",
+    "method": "GET",
+    "path": "/v1/invoices/stripe/connect/status",
+    "tag": "Billing",
+    "summary": "Stripe Connect account status for the caller's org",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_invoices",
+    "method": "GET",
+    "path": "/v1/invoices",
+    "tag": "Billing",
+    "summary": "List invoices for the caller's org, newest first",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "status",
+        "required": false
+      },
+      {
+        "name": "year",
+        "required": false
+      },
+      {
+        "name": "month",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "create_invoice",
+    "method": "POST",
+    "path": "/v1/invoices",
+    "tag": "Billing",
+    "summary": "Bill a period from its call records. Requires the 'write' scope.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_invoice",
+    "method": "GET",
+    "path": "/v1/invoices/{id}",
+    "tag": "Billing",
+    "summary": "One invoice with its line items and period",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "update_invoice",
+    "method": "PATCH",
+    "path": "/v1/invoices/{id}",
+    "tag": "Billing",
+    "summary": "Update invoice status or recipient. Requires the 'write' scope.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "void_invoice",
+    "method": "DELETE",
+    "path": "/v1/invoices/{id}",
+    "tag": "Billing",
+    "summary": "Void an invoice. Requires the 'write' scope.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_invoice_document",
+    "method": "GET",
+    "path": "/v1/invoices/{id}/pdf",
+    "tag": "Billing",
+    "summary": "Download the invoice document. Not JSON.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_connectivity_plans",
+    "method": "GET",
+    "path": "/v1/connectivity/plans",
+    "tag": "Connectivity",
+    "summary": "List test plans and live plans available to this account",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_connectivity_products",
+    "method": "GET",
+    "path": "/v1/connectivity/products",
+    "tag": "Connectivity",
+    "summary": "List connectivity products this account defined",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "create_connectivity_product",
+    "method": "POST",
+    "path": "/v1/connectivity/products",
+    "tag": "Connectivity",
+    "summary": "Define a connectivity plan for this account",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "Idempotency-Key",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get_connectivity_product",
+    "method": "GET",
+    "path": "/v1/connectivity/products/{id}",
+    "tag": "Connectivity",
+    "summary": "Retrieve one connectivity product",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_connectivity_intents",
+    "method": "GET",
+    "path": "/v1/connectivity/intents",
+    "tag": "Connectivity",
+    "summary": "List connectivity intents for this account",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "create_connectivity_intent",
+    "method": "POST",
+    "path": "/v1/connectivity/intents",
+    "tag": "Connectivity",
+    "summary": "Issue one eSIM, or leave the intent waiting for a plan",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "Idempotency-Key",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get_connectivity_intent",
+    "method": "GET",
+    "path": "/v1/connectivity/intents/{id}",
+    "tag": "Connectivity",
+    "summary": "Retrieve one connectivity intent",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "confirm_connectivity_intent",
+    "method": "POST",
+    "path": "/v1/connectivity/intents/{id}/confirm",
+    "tag": "Connectivity",
+    "summary": "Attach a plan and issue the eSIM",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "create_connectivity_webhook_endpoint",
+    "method": "POST",
+    "path": "/v1/connectivity/webhook_endpoints",
+    "tag": "Connectivity",
+    "summary": "Register an HTTPS endpoint. The signing secret is returned once.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_connectivity_webhook_endpoints",
+    "method": "GET",
+    "path": "/v1/connectivity/webhook_endpoints",
+    "tag": "Connectivity",
+    "summary": "List webhook endpoints. Secrets are omitted.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "delete_connectivity_webhook_endpoint",
+    "method": "DELETE",
+    "path": "/v1/connectivity/webhook_endpoints/{id}",
+    "tag": "Connectivity",
+    "summary": "Remove a webhook endpoint",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_connectivity_events",
+    "method": "GET",
+    "path": "/v1/connectivity/events",
+    "tag": "Connectivity",
+    "summary": "List recent connectivity events for this account",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "intent",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "get_connectivity_event",
+    "method": "GET",
+    "path": "/v1/connectivity/events/{id}",
+    "tag": "Connectivity",
+    "summary": "Retrieve one connectivity event",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "create_connectivity_usage_record",
+    "method": "POST",
+    "path": "/v1/connectivity/usage_records",
+    "tag": "Connectivity",
+    "summary": "Record usage on a test intent. Live intents are metered by the network.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "Idempotency-Key",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "list_connectivity_usage_records",
+    "method": "GET",
+    "path": "/v1/connectivity/usage_records",
+    "tag": "Connectivity",
+    "summary": "List usage records for one intent",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "intent",
+        "required": true
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "retry_connectivity_event",
+    "method": "POST",
+    "path": "/v1/connectivity/events/{id}/retry",
+    "tag": "Connectivity",
+    "summary": "Re-sign and POST an existing event. Does not create a second event.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "issue_esim_from_inventory",
+    "method": "POST",
+    "path": "/v1/subscribers/issue-from-inventory",
+    "tag": "Subscribers",
+    "summary": "Issue a free eSIM from an account's inventory and assign a package",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Idempotency-Key",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "rollback_esim_issuance",
+    "method": "DELETE",
+    "path": "/v1/subscribers/issue-from-inventory/{idempotencyKey}",
+    "tag": "Subscribers",
+    "summary": "Roll back one operator issuance by its idempotency key",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "idempotencyKey",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "X-Confirm-Token",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "subscriber_country_history",
+    "method": "GET",
+    "path": "/v1/subscribers/{iccid}/country-history",
+    "tag": "Subscribers",
+    "summary": "Recent country.entered events for one subscriber",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "get_subscriber_notes",
+    "method": "GET",
+    "path": "/v1/subscribers/{iccid}/notes",
+    "tag": "Subscribers",
+    "summary": "Operator notes for one subscriber",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "add_subscriber_note",
+    "method": "POST",
+    "path": "/v1/subscribers/{iccid}/notes",
+    "tag": "Subscribers",
+    "summary": "Append one support note",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "put_subscriber_notes",
+    "method": "PUT",
+    "path": "/v1/subscribers/{iccid}/notes",
+    "tag": "Subscribers",
+    "summary": "Replace the fleet note blob",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "iccid",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "observe_connectivity_event",
+    "method": "POST",
+    "path": "/v1/connectivity/events/observe",
+    "tag": "Connectivity",
+    "summary": "Record a bridge network event against the intent that owns the ICCID",
+    "security": "internal",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "ingest_connectivity_usage",
+    "method": "POST",
+    "path": "/v1/connectivity/usage_records/ingest",
+    "tag": "Connectivity",
+    "summary": "Ingest one metered usage line from the bridge",
+    "security": "internal",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "ingest_cdr_events",
+    "method": "POST",
+    "path": "/v1/cdr/ingest",
+    "tag": "Billing",
+    "summary": "Store a batch of CDR events for the caller's org",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "aggregate_cdr",
+    "method": "GET",
+    "path": "/v1/cdr/aggregate",
+    "tag": "Billing",
+    "summary": "Sum CDR bytes for one month, grouped by ICCID",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "year",
+        "required": true
+      },
+      {
+        "name": "month",
+        "required": true
+      },
+      {
+        "name": "iccid",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "list_storefront_templates",
+    "method": "GET",
+    "path": "/api/templates",
+    "tag": "Storefront",
+    "summary": "Sellable storefront plans, as a bare array",
+    "security": "public",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_storefront_buyer_orders",
+    "method": "GET",
+    "path": "/api/orders",
+    "tag": "Storefront",
+    "summary": "List eSIMs one buyer paid for on one shop",
+    "security": "storefront",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "storefront",
+        "required": true
+      },
+      {
+        "name": "email",
+        "required": true
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "get_storefront_order",
+    "method": "GET",
+    "path": "/api/orders/{orderId}",
+    "tag": "Storefront",
+    "summary": "Read one storefront order",
+    "security": "storefront",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "orderId",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "storefront",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "rollback_storefront_order",
+    "method": "DELETE",
+    "path": "/api/orders/{orderId}",
+    "tag": "Storefront",
+    "summary": "Cancel one storefront order and release its eSIM (CAR-264 rollback)",
+    "security": "storefront",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "orderId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_hosted_storefront",
+    "method": "GET",
+    "path": "/api/hosted/{slug}",
+    "tag": "Storefront",
+    "summary": "Published hosted storefront, including its sellable plans",
+    "security": "public",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "slug",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_storefronts",
+    "method": "GET",
+    "path": "/v1/storefronts",
+    "tag": "Storefront",
+    "summary": "List hosted storefronts for the caller's organization",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "create_storefront",
+    "method": "POST",
+    "path": "/v1/storefronts",
+    "tag": "Storefront",
+    "summary": "Create a hosted storefront",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "Idempotency-Key",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get_storefront",
+    "method": "GET",
+    "path": "/v1/storefronts/{id}",
+    "tag": "Storefront",
+    "summary": "Read one hosted storefront owned by the caller",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "update_storefront",
+    "method": "PATCH",
+    "path": "/v1/storefronts/{id}",
+    "tag": "Storefront",
+    "summary": "Update a hosted storefront. Omitted fields are left as they are.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "upsert_storefront_plan",
+    "method": "POST",
+    "path": "/v1/storefronts/{id}/plans",
+    "tag": "Storefront",
+    "summary": "Create or replace a plan on a hosted storefront. product_id copies a connectivity plan owned by the caller.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "health_check",
+    "method": "GET",
+    "path": "/health",
+    "tag": "System",
+    "summary": "Health check — returns build metadata",
+    "security": "public",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  }
+]

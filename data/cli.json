@@ -1,0 +1,2931 @@
+[
+  {
+    "invocation": "carrier subscribers list",
+    "domain": "subscribers",
+    "summary": "List subscribers. With no filter, uses your default account (lowest-id account under your reseller).",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_subscribers",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--account-id <id>",
+        "description": "Filter by account ID",
+        "required": false
+      },
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Filter by ICCID",
+        "required": false
+      },
+      {
+        "flags": "--msisdn <msisdn>",
+        "description": "Filter by MSISDN",
+        "required": false
+      },
+      {
+        "flags": "--imsi <imsi>",
+        "description": "Filter by IMSI",
+        "required": false
+      },
+      {
+        "flags": "--activation-code <code>",
+        "description": "Filter by eSIM activation code",
+        "required": false
+      },
+      {
+        "flags": "--status <status>",
+        "description": "Filter by status, e.g. ACTIVE",
+        "required": false
+      },
+      {
+        "flags": "--limit <n>",
+        "description": "Max rows to return",
+        "required": false
+      },
+      {
+        "flags": "--offset <n>",
+        "description": "Pagination offset",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers get",
+    "domain": "subscribers",
+    "summary": "Full record for one subscriber by ICCID or MSISDN.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "get_subscriber",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": false
+      },
+      {
+        "flags": "--msisdn <msisdn>",
+        "description": "Subscriber MSISDN",
+        "required": false
+      },
+      {
+        "flags": "--gz-counter",
+        "description": "Include the green-zone byte counter",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers location",
+    "domain": "subscribers",
+    "summary": "Last-known location from the most recent cell tower usage.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "get_subscriber_location",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers usage",
+    "domain": "subscribers",
+    "summary": "Daily data, voice and SMS usage over a window of up to 7 days.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "subscriber_usage",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--start <date>",
+        "description": "Start date YYYY-MM-DD (default: 7 days ago)",
+        "required": false
+      },
+      {
+        "flags": "--end <date>",
+        "description": "End date YYYY-MM-DD, max 7 days from start (default: today)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers events",
+    "domain": "subscribers",
+    "summary": "Network attach/detach events over a window of up to 7 days.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "subscriber_network_events",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--start <date>",
+        "description": "Start date YYYY-MM-DD (default: 7 days ago)",
+        "required": false
+      },
+      {
+        "flags": "--end <date>",
+        "description": "End date YYYY-MM-DD, max 7 days from start (default: today)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers active-period",
+    "domain": "subscribers",
+    "summary": "First and last usage dates for one subscriber.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "subscriber_active_period",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers esim-status",
+    "domain": "subscribers",
+    "summary": "eSIM state counts per account: active, suspended, inventory.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "esim_status_per_account",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--account-id <id>",
+        "description": "Report on a single account",
+        "required": false
+      },
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers set-status",
+    "domain": "subscribers",
+    "summary": "Change a subscriber's status.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_subscriber_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--status <status>",
+        "description": "New status, e.g. ACTIVE or SUSPENDED",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers set-balance",
+    "domain": "subscribers",
+    "summary": "Add to or replace a subscriber's balance.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_subscriber_balance",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--amount <amount>",
+        "description": "Amount to add (adapt) or set to (set)",
+        "required": true
+      },
+      {
+        "flags": "--mode <mode>",
+        "description": "'adapt' adds or subtracts, 'set' replaces",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers sim-status show",
+    "domain": "subscribers",
+    "summary": "SIM/eSIM status at the SIM provider level, distinct from OCS status.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "get_sim_provider_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers sim-status set",
+    "domain": "subscribers",
+    "summary": "Change the SIM/eSIM status at the SIM provider level. ENABLED and DISABLED map to OCS Affected and Free.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "change_sim_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--status <status>",
+        "description": "New SIM status: ENABLED or DISABLED",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers phone-number set",
+    "domain": "subscribers",
+    "summary": "Assign a phone number (MSISDN) to a subscriber.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "affect_subscriber_phone_number",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--phone-number <e164>",
+        "description": "E.164 phone number to assign, e.g. +31612345678",
+        "required": true
+      },
+      {
+        "flags": "--phone-type <type>",
+        "description": "'fake' for test/dev MSISDNs, 'real' for production",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers contact set",
+    "domain": "subscribers",
+    "summary": "Update contact details on a subscriber. Omitted fields stay unchanged.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_subscriber_contact_info",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--first-name <name>",
+        "description": "First name",
+        "required": false
+      },
+      {
+        "flags": "--last-name <name>",
+        "description": "Last name",
+        "required": false
+      },
+      {
+        "flags": "--company <name>",
+        "description": "Company name",
+        "required": false
+      },
+      {
+        "flags": "--email <email>",
+        "description": "Email address",
+        "required": false
+      },
+      {
+        "flags": "--phone-number <number>",
+        "description": "Phone number",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers mobile-plan set",
+    "domain": "subscribers",
+    "summary": "Change the mobile pricing plan a subscriber is billed under.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_subscriber_mobile_plan",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--plan-id <id>",
+        "description": "Mobile pricing plan ID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers voip-plan set",
+    "domain": "subscribers",
+    "summary": "Change the VoIP pricing plan assigned to a subscriber.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_subscriber_voip_plan",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--plan-id <id>",
+        "description": "VoIP pricing plan ID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers traffic set",
+    "domain": "subscribers",
+    "summary": "Enable or disable data, calls and SMS per traffic type. Omit a flag to leave it unchanged.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "set_subscriber_traffic_restrictions",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--data <bool>",
+        "description": "Allow data traffic (true or false)",
+        "required": false
+      },
+      {
+        "flags": "--moc <bool>",
+        "description": "Allow outbound calls (true or false)",
+        "required": false
+      },
+      {
+        "flags": "--mtc <bool>",
+        "description": "Allow inbound calls (true or false)",
+        "required": false
+      },
+      {
+        "flags": "--sms <bool>",
+        "description": "Allow outbound SMS (true or false)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers bitrate show",
+    "domain": "subscribers",
+    "summary": "Current HLR-level bandwidth cap for a subscriber.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "hlr_get_bitrate",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers bitrate set",
+    "domain": "subscribers",
+    "summary": "Set an HLR-level bandwidth cap. Bits per second are mapped onto the OCS KB_ enum.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "hlr_set_bitrate",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--bitrate <bps>",
+        "description": "Max bitrate in bits per second. 256000 is KB_256. 0 is UNLIMITED.",
+        "required": false
+      },
+      {
+        "flags": "--bitrate-string <level>",
+        "description": "OCS bitrate level, e.g. KB_256, KB_1024, UNLIMITED (instead of --bitrate)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers greenzone reset",
+    "domain": "subscribers",
+    "summary": "Reset the Green Zone byte counter to zero. Irreversible.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "reset_subscriber_gz_counter",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier subscribers cell-location",
+    "domain": "subscribers",
+    "summary": "Resolve a raw cell tower tuple to coordinates (Bridge4IP GeoSense).",
+    "write": false,
+    "transport": "mcp",
+    "tool": "get_subscriber_location_by_cell_id",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--radio-type <type>",
+        "description": "Radio type: 2G, 3G, 4G, 5G or NB-IoT",
+        "required": true
+      },
+      {
+        "flags": "--mcc <mcc>",
+        "description": "Mobile Country Code",
+        "required": true
+      },
+      {
+        "flags": "--mnc <mnc>",
+        "description": "Mobile Network Code",
+        "required": true
+      },
+      {
+        "flags": "--lac <lac>",
+        "description": "Location Area Code",
+        "required": true
+      },
+      {
+        "flags": "--cell-id <id>",
+        "description": "Cell tower ID (strongly recommended)",
+        "required": false
+      },
+      {
+        "flags": "--signal-strength <dbm>",
+        "description": "Signal strength in dBm, e.g. -89 (improves accuracy)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier packages list",
+    "domain": "packages",
+    "summary": "Packages on one subscriber, with allowance and expiry.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_subscriber_packages",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier packages assign",
+    "domain": "packages",
+    "summary": "Assign a one-time package from a template.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "assign_package",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": false
+      },
+      {
+        "flags": "--template-id <id>",
+        "description": "Package template ID from `carrier templates list`",
+        "required": true
+      },
+      {
+        "flags": "--account-id <id>",
+        "description": "Auto-pick a free eSIM from this account instead of using --iccid",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier packages set-status",
+    "domain": "packages",
+    "summary": "Activate or deactivate one package without deleting it.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_package_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--package-id <id>",
+        "description": "Package ID from `carrier packages list`",
+        "required": true
+      },
+      {
+        "flags": "--status <status>",
+        "description": "New package status, e.g. ACTIVE or INACTIVE",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier packages set-expiry",
+    "domain": "packages",
+    "summary": "Move a package's expiry date. Pass an absolute date or a day count.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_package_expiry",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--package-id <id>",
+        "description": "Package ID from `carrier packages list`",
+        "required": true
+      },
+      {
+        "flags": "--expires <date>",
+        "description": "Absolute expiry, ISO 8601 (e.g. 2026-06-01)",
+        "required": false
+      },
+      {
+        "flags": "--validity-days <n>",
+        "description": "Days from now until expiry (instead of --expires)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier packages set-limits",
+    "domain": "packages",
+    "summary": "Change data, voice or SMS ceilings on an assigned package.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_package_limits",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--package-id <id>",
+        "description": "Package ID from `carrier packages list`",
+        "required": true
+      },
+      {
+        "flags": "--limits <json>",
+        "description": "New limits as JSON, e.g. '{\"dataLimit\":5368709120}'",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier packages assign-recurring",
+    "domain": "packages",
+    "summary": "Assign an auto-renewing package from a recurring-enabled template.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "assign_recurring_package",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--template-id <id>",
+        "description": "Recurring package template ID from `carrier templates list`",
+        "required": true
+      },
+      {
+        "flags": "--activate-at-first-use",
+        "description": "Activate on first network usage (instead of --start-time)",
+        "required": false
+      },
+      {
+        "flags": "--start-time <iso>",
+        "description": "Scheduled activation, ISO 8601 UTC (instead of --activate-at-first-use)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier packages recurring set",
+    "domain": "packages",
+    "summary": "Pause or restart the auto-renewal of a recurring package.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "stop_resume_recurring_package",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--package-id <id>",
+        "description": "Package ID from `carrier packages list`",
+        "required": true
+      },
+      {
+        "flags": "--action <action>",
+        "description": "'stop' halts future renewals, 'resume' re-enables them",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier packages active-period set",
+    "domain": "packages",
+    "summary": "Move the start and/or end of a package's active period.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_subscriber_package_active_period",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--package-id <id>",
+        "description": "Package ID from `carrier packages list`",
+        "required": true
+      },
+      {
+        "flags": "--start <date>",
+        "description": "New start date, ISO 8601 (e.g. 2026-09-01)",
+        "required": false
+      },
+      {
+        "flags": "--end <date>",
+        "description": "New end date, ISO 8601 (e.g. 2026-09-30)",
+        "required": false
+      },
+      {
+        "flags": "--comment <text>",
+        "description": "Audit note stored on the package (OCS requires one; a default is sent)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier packages clean",
+    "domain": "packages",
+    "summary": "Remove ALL packages from a subscriber. Irreversible.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "clean_all_packages",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier packages delete",
+    "domain": "packages",
+    "summary": "Permanently remove one package from a subscriber.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "delete_subscriber_package",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--package-id <id>",
+        "description": "Package ID from `carrier packages list`",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier templates list",
+    "domain": "templates",
+    "summary": "Browse package templates available for assignment.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_package_templates",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier templates create",
+    "domain": "templates",
+    "summary": "Create a package template from a JSON configuration.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "create_package_template",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--template <json>",
+        "description": "Template config as JSON, e.g. '{\"name\":\"Europe 5GB\",\"dataLimit\":5368709120}'",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier templates set-core",
+    "domain": "templates",
+    "summary": "Change name, limits, cost, validity or zone on a template.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_template_core",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--template-id <id>",
+        "description": "Template ID from `carrier templates list`",
+        "required": true
+      },
+      {
+        "flags": "--changes <json>",
+        "description": "Core fields as JSON, e.g. '{\"name\":\"Europe 5GB\"}'",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier templates set-recurring",
+    "domain": "templates",
+    "summary": "Change auto-renewal settings on a template.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_template_recurring",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--template-id <id>",
+        "description": "Template ID from `carrier templates list`",
+        "required": true
+      },
+      {
+        "flags": "--changes <json>",
+        "description": "Recurring fields as JSON, e.g. '{\"recurringPeriodicityType\":2,\"nbOccurrence\":12}'",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier templates set-throttling",
+    "domain": "templates",
+    "summary": "Change throttling thresholds. Applies to existing packages too.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_template_throttling",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--template-id <id>",
+        "description": "Template ID from `carrier templates list`",
+        "required": true
+      },
+      {
+        "flags": "--changes <json>",
+        "description": "Throttling fields as JSON, e.g. '{\"throttlingActive\":true}'",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier zones list",
+    "domain": "zones",
+    "summary": "Location zones with countries and operators. Prefer this over `elements`.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_detailed_location_zones",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      },
+      {
+        "flags": "--verbose <bool>",
+        "description": "Return the full OCS zone shape instead of the compact projection",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier zones elements",
+    "domain": "zones",
+    "summary": "Raw zone elements. Upstream OCS returns malformed rows for some zones.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_location_zones",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--zone-id <id>",
+        "description": "Filter to one location zone",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier zones create",
+    "domain": "zones",
+    "summary": "Create a location zone from a JSON configuration.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "create_location_zone",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--zone <json>",
+        "description": "Zone config as JSON, e.g. '{\"locationZoneName\":\"Europe\",\"tadigList\":[\"AZER1\",\"QWER1\"],\"networkProfileId\":79}'",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier zones network-profile set",
+    "domain": "zones",
+    "summary": "Attach or change the network profile on an existing location zone.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "change_network_profile_of_location_zone",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--zone-id <id>",
+        "description": "Location zone ID from `carrier zones list`",
+        "required": true
+      },
+      {
+        "flags": "--network-profile-id <id>",
+        "description": "Network profile ID from `carrier network-profiles list`",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier zones destinations",
+    "domain": "zones",
+    "summary": "Destination list catalog for voice and SMS packages.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_destination_lists",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier zones prefixes",
+    "domain": "zones",
+    "summary": "Dialling prefixes inside one destination list.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_destination_prefixes",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--destination-list-id <id>",
+        "description": "Destination list ID from `carrier zones destinations`",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier steering list",
+    "domain": "steering",
+    "summary": "Steering lists configured for this reseller.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_steering_lists",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier steering assign",
+    "domain": "steering",
+    "summary": "Assign a steering list to a subscriber. Follow with `push`.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_subscriber_steering_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--list-id <id>",
+        "description": "Steering list ID from `carrier steering list`",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier steering push",
+    "domain": "steering",
+    "summary": "Push the assigned operator preference list to the device now.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "push_steering_to_subscriber",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier network-default show",
+    "domain": "network-default",
+    "summary": "Show the org network default (cheapest_available, all or custom) and what applies today. New assignments only.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "get_network_default",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier network-default set",
+    "domain": "network-default",
+    "summary": "Store the org network default. Changes no SIM and writes nothing to OCS; applies to new assignments.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "set_network_default",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--mode <mode>",
+        "description": "cheapest_available | all | custom",
+        "required": true
+      },
+      {
+        "flags": "--list-id <id>",
+        "description": "Steering list ID from `carrier steering list`. Required when --mode is custom.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier network-default plan",
+    "domain": "network-default",
+    "summary": "Show which networks a SIM would get in the given countries. Read only. Falls back to all networks with a loud warning when the tariff is missing.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "plan_network_default",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--countries <codes>",
+        "description": "Comma-separated ISO-3166 alpha-2 codes, e.g. CA,US",
+        "required": true
+      },
+      {
+        "flags": "--sim-mode <mode>",
+        "description": "Override for this SIM: cheapest_available | all | custom",
+        "required": false
+      },
+      {
+        "flags": "--sim-list-id <id>",
+        "description": "Steering list ID when --sim-mode is custom",
+        "required": false
+      },
+      {
+        "flags": "--package-mode <mode>",
+        "description": "Override for this package: cheapest_available | all | custom",
+        "required": false
+      },
+      {
+        "flags": "--package-list-id <id>",
+        "description": "Steering list ID when --package-mode is custom",
+        "required": false
+      },
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier accounts list",
+    "domain": "accounts",
+    "summary": "Accounts under a reseller with name, balance and type.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_reseller_accounts",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier accounts balance set",
+    "domain": "accounts",
+    "summary": "Add to or replace an account's monetary balance.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "modify_account_balance",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--account-id <id>",
+        "description": "Account ID from `carrier accounts list`",
+        "required": true
+      },
+      {
+        "flags": "--amount <amount>",
+        "description": "Amount to add (adapt) or set to (set)",
+        "required": true
+      },
+      {
+        "flags": "--mode <mode>",
+        "description": "'adapt' adds or subtracts, 'set' replaces",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier accounts move-subscribers",
+    "domain": "accounts",
+    "summary": "Move a contiguous IMSI or ICCID range of subscribers to another account.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "move_subscriber_range_to_account",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--src-account-id <id>",
+        "description": "Source account ID from `carrier accounts list`",
+        "required": true
+      },
+      {
+        "flags": "--dest-account <id>",
+        "description": "Destination account ID from `carrier accounts list`",
+        "required": true
+      },
+      {
+        "flags": "--range-type <type>",
+        "description": "Whether --range-start/--range-end are IMSI or ICCID ('IMSI' | 'ICCID')",
+        "required": true
+      },
+      {
+        "flags": "--range-start <value>",
+        "description": "Inclusive start of the identifier range",
+        "required": true
+      },
+      {
+        "flags": "--range-end <value>",
+        "description": "Inclusive end of the identifier range",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier reseller show",
+    "domain": "reseller",
+    "summary": "Full reseller record: balance, pricing plans, contact and traffic config.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "get_reseller_info",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier tariff show",
+    "domain": "tariff",
+    "summary": "Per-country wholesale rates for data, voice and SMS.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "get_tariff",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      },
+      {
+        "flags": "--country <name|iso2>",
+        "description": "Filter to one country: ISO2 (\"nl\") or name (\"Netherlands\")",
+        "required": false
+      },
+      {
+        "flags": "--traffic-type <type>",
+        "description": "Filter to data, voice or sms",
+        "required": false
+      },
+      {
+        "flags": "--verbose <bool>",
+        "description": "Return the full OCS rule shape instead of the compact projection",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier tariff voip",
+    "domain": "tariff",
+    "summary": "VoIP tariff catalog for a reseller.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_subscriber_voip_tariff",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier tariff voip-rules",
+    "domain": "tariff",
+    "summary": "Rate rules inside one VoIP plan.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_voip_tariff_rule",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--voip-plan-id <id>",
+        "description": "VoIP plan ID from `carrier tariff voip`",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier sms send",
+    "domain": "sms",
+    "summary": "Send an MT SMS to one subscriber.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "send_sms",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--msisdn <msisdn>",
+        "description": "Target MSISDN in E.164 format",
+        "required": true
+      },
+      {
+        "flags": "--message <text>",
+        "description": "SMS text (160 chars GSM-7; 70 with emoji or non-Latin scripts)",
+        "required": true
+      },
+      {
+        "flags": "--sender <sender>",
+        "description": "Sender ID or number shown on the device",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier sponsors list",
+    "domain": "sponsors",
+    "summary": "Sponsor carriers available to this reseller.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_sponsors",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier network-profiles list",
+    "domain": "network-profiles",
+    "summary": "Network profiles available to this reseller.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_network_profiles",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier webhooks show",
+    "domain": "webhooks",
+    "summary": "Current relay flags (LU, Gy, VoIP, calls+SMS) and notification webhooks.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "carrier_webhook_config",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--reseller-id <id>",
+        "description": "Reseller ID (omit for the token owner's reseller)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier intelligence fleet-health",
+    "domain": "intelligence",
+    "summary": "eSIM counts, low-balance accounts and what needs attention.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "fleet_health",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--account-id <id>",
+        "description": "Report on a single account",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier intelligence diagnose",
+    "domain": "intelligence",
+    "summary": "Why one subscriber is offline, throttled or failing to attach.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "diagnose_subscriber",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier intelligence anomalies",
+    "domain": "intelligence",
+    "summary": "Usage spikes and burn rates that exhaust the package early.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "detect_usage_anomalies",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier intelligence churn",
+    "domain": "intelligence",
+    "summary": "Churn risk score with contributing factors.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "churn_risk",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier intelligence optimize",
+    "domain": "intelligence",
+    "summary": "Better-fitting package for one subscriber, with the saving.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "optimize_package",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier intelligence coverage",
+    "domain": "intelligence",
+    "summary": "Networks subscribers actually attach to, against your steering lists.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "audit_network_coverage",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--account-id <id>",
+        "description": "Report on a single account",
+        "required": false
+      },
+      {
+        "flags": "--limit <n>",
+        "description": "Subscribers to sample (default 50)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier intelligence high-cost",
+    "domain": "intelligence",
+    "summary": "Subscribers whose consumption erodes the margin.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "high_cost_subscribers",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--account-id <id>",
+        "description": "Report on a single account",
+        "required": false
+      },
+      {
+        "flags": "--limit <n>",
+        "description": "Subscribers to analyse (default 100)",
+        "required": false
+      },
+      {
+        "flags": "--threshold-pct <n>",
+        "description": "Usage percentage that flags a subscriber (default 80)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier intelligence marketing",
+    "domain": "intelligence",
+    "summary": "Where subscribers and revenue concentrate, and which markets grow.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "marketing_intelligence",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--account-id <id>",
+        "description": "Report on a single account",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier intelligence country-entry",
+    "domain": "intelligence",
+    "summary": "Country a subscriber is in now, optionally diffed against the last known one.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "detect_country_entry",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "Subscriber ICCID",
+        "required": true
+      },
+      {
+        "flags": "--expected-country <iso2>",
+        "description": "Last known ISO 3166-1 alpha-2 country, e.g. NL",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier api-keys create",
+    "domain": "api-keys",
+    "summary": "Create an org API key. The secret is shown once and never stored by the CLI.",
+    "write": false,
+    "transport": "rest",
+    "tool": null,
+    "restMethod": "POST",
+    "restPath": "/v1/api-keys",
+    "options": [
+      {
+        "flags": "--name <name>",
+        "description": "Label for the key, max 64 characters",
+        "required": true
+      },
+      {
+        "flags": "--description <text>",
+        "description": "Optional note, max 256 characters",
+        "required": false
+      },
+      {
+        "flags": "--seconds-until-expiration <n>",
+        "description": "Expiry in seconds, 60 to 31536000. Omit for a key that does not expire.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier onboard status",
+    "domain": "onboard",
+    "summary": "Show how far onboarding has got. Same state the console renders.",
+    "write": false,
+    "transport": "rest",
+    "tool": null,
+    "restMethod": "GET",
+    "restPath": "/v1/onboarding",
+    "options": []
+  },
+  {
+    "invocation": "carrier onboard org",
+    "domain": "onboard",
+    "summary": "Record who the operator is (step 1).",
+    "write": false,
+    "transport": "rest",
+    "tool": null,
+    "restMethod": "POST",
+    "restPath": "/v1/onboarding/org",
+    "options": [
+      {
+        "flags": "--name <name>",
+        "description": "Operator name, max 128 characters",
+        "required": true
+      },
+      {
+        "flags": "--website <url>",
+        "description": "Public site, if there is one",
+        "required": false
+      },
+      {
+        "flags": "--country <iso2>",
+        "description": "ISO 3166-1 alpha-2 country, e.g. NL",
+        "required": false
+      },
+      {
+        "flags": "--operator-type <type>",
+        "description": "How the operator describes itself, e.g. mvno",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier onboard connect",
+    "domain": "onboard",
+    "summary": "Connect your own eSIMVault token (step 2, BYO). Verified against OCS, then stored encrypted; the token is never echoed back.",
+    "write": false,
+    "transport": "rest",
+    "tool": null,
+    "restMethod": "POST",
+    "restPath": "/v1/onboarding/ocs-connect",
+    "options": [
+      {
+        "flags": "--token <token>",
+        "description": "eSIMVault API token. A flag lands in shell history — prefer a leading space, or run this once from a fresh shell.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier onboard managed",
+    "domain": "onboard",
+    "summary": "Let Carrier provision the OCS sub-account instead (step 2, the primary path). Idempotent, and clears any BYO token.",
+    "write": false,
+    "transport": "rest",
+    "tool": null,
+    "restMethod": "POST",
+    "restPath": "/v1/onboarding/managed-account",
+    "options": []
+  },
+  {
+    "invocation": "carrier onboard plan",
+    "domain": "onboard",
+    "summary": "Record the starting plan template (step 3).",
+    "write": false,
+    "transport": "rest",
+    "tool": null,
+    "restMethod": "POST",
+    "restPath": "/v1/onboarding/plan",
+    "options": [
+      {
+        "flags": "--template-id <id>",
+        "description": "Package template to start from",
+        "required": true
+      },
+      {
+        "flags": "--display-name <name>",
+        "description": "What customers will see the plan called",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier onboard plan-skip",
+    "domain": "onboard",
+    "summary": "Skip the plan step and come back to it later (step 3).",
+    "write": false,
+    "transport": "rest",
+    "tool": null,
+    "restMethod": "POST",
+    "restPath": "/v1/onboarding/plan/skip",
+    "options": []
+  },
+  {
+    "invocation": "carrier onboard test-esim",
+    "domain": "onboard",
+    "summary": "Read back one eSIM from the connected fleet (step 4). Nothing is provisioned; a demo ICCID with a reason comes back if OCS has nothing to show.",
+    "write": false,
+    "transport": "rest",
+    "tool": null,
+    "restMethod": "POST",
+    "restPath": "/v1/onboarding/test-esim",
+    "options": []
+  },
+  {
+    "invocation": "carrier onboard complete",
+    "domain": "onboard",
+    "summary": "Mark onboarding done (step 5).",
+    "write": false,
+    "transport": "rest",
+    "tool": null,
+    "restMethod": "POST",
+    "restPath": "/v1/onboarding/complete",
+    "options": []
+  },
+  {
+    "invocation": "carrier billing events",
+    "domain": "billing",
+    "summary": "View recent billing threshold events: notifications, invoice triggers, hard cap alerts, and overage pauses.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "billing_events",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--limit <n>",
+        "description": "Maximum number of events to return (default: 20, max: 50).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier billing configure",
+    "domain": "billing",
+    "summary": "Configure your billing preferences: enable/disable overages, set billing thresholds (bill shock prevention), configure notification percentages, and set hard spending caps.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "configure_billing",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--overages-enabled <bool>",
+        "description": "Enable or disable auto-billed overages when monthly credits are exhausted.",
+        "required": false
+      },
+      {
+        "flags": "--billing-threshold-cents <n>",
+        "description": "Amount in cents at which an invoice is automatically generated (e.g., 10000 = $100).",
+        "required": false
+      },
+      {
+        "flags": "--hard-cap-cents <n>",
+        "description": "Maximum overage spend in cents before overages are paused (0 = no cap).",
+        "required": false
+      },
+      {
+        "flags": "--auto-pause-on-cap <bool>",
+        "description": "Whether to automatically pause overages when hard cap is reached.",
+        "required": false
+      },
+      {
+        "flags": "--notify-at-pct <list>",
+        "description": "Percentage thresholds at which to send notifications (e.g., [50, 80, 95, 100]). Comma-separated.",
+        "required": false
+      },
+      {
+        "flags": "--notification-email <email>",
+        "description": "Email address for billing threshold notifications.",
+        "required": false
+      },
+      {
+        "flags": "--notification-phone <phone>",
+        "description": "E.164 phone number for SMS billing threshold notifications via Twilio (e.g. +14155552671).",
+        "required": false
+      },
+      {
+        "flags": "--webhook-url <url>",
+        "description": "Webhook URL for billing threshold events.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier billing credits",
+    "domain": "billing",
+    "summary": "Read how much of this Carrier MCP plan is left: credits remaining, daily free credits, overage state, volume discount tier, and billing threshold state.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "credit_balance",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier billing plans",
+    "domain": "billing",
+    "summary": "View all available Carrier MCP pricing plans with credit allotments, features, overage rates, and volume discount tiers.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "pricing_plans",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier billing projection",
+    "domain": "billing",
+    "summary": "Project your credit usage and costs for the remainder of the billing period based on current consumption rate.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "usage_projection",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--days-to-project <n>",
+        "description": "Number of days to project forward (default: remaining days in month).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier billing rate-limit",
+    "domain": "billing",
+    "summary": "Inspect Bridge4IP OCS rate-limit governor state — bucket fill levels, per-endpoint limits, and 80% alert thresholds.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "rate_limit_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--endpoint <endpoint>",
+        "description": "OCS method name in camelCase (e.g. 'subscriberUsageOverPeriod').",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier wallet balance",
+    "domain": "wallet",
+    "summary": "Read the caller organisation's Carrier prepaid wallet: current balance and auto-top-up settings.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "wallet_balance",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier wallet topup",
+    "domain": "wallet",
+    "summary": "Create a Stripe Checkout link so a human can top up the Carrier prepaid wallet by card.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "wallet_topup_checkout",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--pack <pack>",
+        "description": "Pack id (pack_500/pack_1000/pack_2500/pack_5000) or exact EUR-cents amount.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier wallet auto-topup",
+    "domain": "wallet",
+    "summary": "Charge the organisation's saved card off-session, right now, and credit the Carrier prepaid wallet with the pack.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "wallet_auto_topup",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--pack-cents <n>",
+        "description": "Override pack amount in EUR cents (must match a catalog pack).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier stripe balance",
+    "domain": "stripe",
+    "summary": "Read the money sitting in the operator's connected Stripe account: available and pending, split per currency.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "stripe_connect_balance",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier stripe payouts",
+    "domain": "stripe",
+    "summary": "List money Stripe has already sent from the operator's connected account to their bank, newest first.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "stripe_connect_payouts",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--limit <n>",
+        "description": "Number of payouts to return. Default 10.",
+        "required": false
+      },
+      {
+        "flags": "--status <status>",
+        "description": "Filter by payout status. One of: pending, paid, failed, canceled, in_transit.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier stripe disputes",
+    "domain": "stripe",
+    "summary": "List chargebacks customers have raised with their bank against the operator's connected Stripe account.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "stripe_connect_dispute_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--limit <n>",
+        "description": "limit (number). Default 10.",
+        "required": false
+      },
+      {
+        "flags": "--status <status>",
+        "description": "Filter by dispute status (e.g. needs_response, under_review).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier stripe refund",
+    "domain": "stripe",
+    "summary": "Refund money to a customer on one charge in the operator's connected Stripe account.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "stripe_connect_refund",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--charge-id <id>",
+        "description": "Stripe charge ID (ch_...).",
+        "required": true
+      },
+      {
+        "flags": "--amount-cents <n>",
+        "description": "Partial refund amount in cents.",
+        "required": false
+      },
+      {
+        "flags": "--reason <reason>",
+        "description": "reason (string). One of: duplicate, fraudulent, requested_by_customer.",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "Confirmation token from previous call.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier radar reviews",
+    "domain": "radar",
+    "summary": "List the Stripe Radar fraud reviews waiting on a manual approve/decline decision, newest first.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "radar_review_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--open-only <bool>",
+        "description": "If true, only returns open (undecided) reviews. Default true.",
+        "required": false
+      },
+      {
+        "flags": "--limit <n>",
+        "description": "limit (number). Default 10.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier radar approve",
+    "domain": "radar",
+    "summary": "Clear a Stripe Radar fraud review so the held charge is captured and the money is taken.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "radar_review_approve",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--review-id <id>",
+        "description": "Stripe Radar review ID (prv_...).",
+        "required": true
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier radar decline",
+    "domain": "radar",
+    "summary": "Close a Stripe Radar fraud review as fraudulent, so the held charge is blocked and the customer is never billed.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "radar_review_decline",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--review-id <id>",
+        "description": "review id (string).",
+        "required": true
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier radar rule-toggle",
+    "domain": "radar",
+    "summary": "Report a Stripe Radar rule's state. Stripe exposes no API to change it, so this changes nothing.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "radar_rule_toggle",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--rule-id <id>",
+        "description": "Stripe Radar rule ID.",
+        "required": true
+      },
+      {
+        "flags": "--enabled <bool>",
+        "description": "true = enable, false = disable.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier radar value-list add",
+    "domain": "radar",
+    "summary": "Add one value to an existing Stripe Radar value list, changing how every future charge is scored.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "radar_value_list_add",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--value-list-id <id>",
+        "description": "Stripe Radar value list ID (rsl_...).",
+        "required": true
+      },
+      {
+        "flags": "--value <value>",
+        "description": "The value to add (email, IP address, country code, etc.).",
+        "required": true
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier greenzone list",
+    "domain": "greenzone",
+    "summary": "List current Greenzone whitelist entries from the KV cache.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "greenzone_whitelist_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--from-portal <bool>",
+        "description": "When true, return Kapture steps to read live portal state instead of KV cache.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier greenzone add",
+    "domain": "greenzone",
+    "summary": "Add a host or IP to the Greenzone whitelist. Needs Kapture running in the operator's own Chrome — without it the dry run still returns the portal steps to follow by hand.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "greenzone_whitelist_add",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--host <host>",
+        "description": "Hostname to whitelist (e.g. 'example.com').",
+        "required": false
+      },
+      {
+        "flags": "--ip <ip>",
+        "description": "IP address or CIDR to whitelist (e.g. '203.0.113.0/24').",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier greenzone remove",
+    "domain": "greenzone",
+    "summary": "Remove a host or IP from the Greenzone whitelist. Needs Kapture running in the operator's own Chrome — without it the dry run still returns the portal steps to follow by hand.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "greenzone_whitelist_remove",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--host <host>",
+        "description": "Hostname to remove from whitelist.",
+        "required": false
+      },
+      {
+        "flags": "--ip <ip>",
+        "description": "IP address or CIDR to remove from whitelist.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier agent ask",
+    "domain": "agent",
+    "summary": "Send a plain-language task to a hosted browsing agent, which drives a real browser on the open web — navigating pages, searching, extracting content, filling forms outside the OCS portal.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_agent_ask",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--prompt <prompt>",
+        "description": "Natural-language task description for the browsing agent.",
+        "required": true
+      },
+      {
+        "flags": "--max-steps <n>",
+        "description": "Advisory step budget (1–30, default 15).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier agent status",
+    "domain": "agent",
+    "summary": "Poll the status of a browser agent task dispatched by ui_agent_ask or any ui_* tool.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ui_agent_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--task-id <id>",
+        "description": "Task ID returned by ui_agent_ask or any ui_* tool dispatch.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier agent pending",
+    "domain": "agent",
+    "summary": "Returns all browser automation tasks that are currently paused waiting for human input.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ui_agent_list_pending",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier agent reply",
+    "domain": "agent",
+    "summary": "Resumes a browser automation task that paused waiting for input.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ui_agent_reply",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--task-id <id>",
+        "description": "Task ID to resume (from ui_agent_list_pending).",
+        "required": true
+      },
+      {
+        "flags": "--reply <reply>",
+        "description": "Your answer to the agent's question (e.g. a 2FA code or confirmation).",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier agent usage",
+    "domain": "agent",
+    "summary": "Returns an estimated Anthropic API cost for Steel agent tasks dispatched this calendar month.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ui_agent_usage",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier agent schedule list",
+    "domain": "agent",
+    "summary": "Lists all Steel recurring schedules stored in KV.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ui_agent_schedule_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier agent schedule create",
+    "domain": "agent",
+    "summary": "Creates a recurring Steel agent run on a cron schedule.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ui_agent_schedule_create",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--name <name>",
+        "description": "Human-readable name for this schedule.",
+        "required": true
+      },
+      {
+        "flags": "--cron <cron>",
+        "description": "Standard 5-field cron expression (minute hour day month weekday).",
+        "required": true
+      },
+      {
+        "flags": "--prompt-template <template>",
+        "description": "Agent prompt/task template the Steel agent will execute on each run.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier agent schedule pause",
+    "domain": "agent",
+    "summary": "Pauses an active Steel recurring schedule.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ui_agent_schedule_pause",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--schedule-id <id>",
+        "description": "ID of the schedule to pause.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier agent schedule resume",
+    "domain": "agent",
+    "summary": "Resumes a paused Steel recurring schedule.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ui_agent_schedule_resume",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--schedule-id <id>",
+        "description": "ID of the schedule to resume.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier agent schedule delete",
+    "domain": "agent",
+    "summary": "Permanently deletes a Steel recurring schedule.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ui_agent_schedule_delete",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--schedule-id <id>",
+        "description": "ID of the schedule to delete.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal account create",
+    "domain": "portal",
+    "summary": "Creates a new sub-account under the reseller via the OCS web dashboard.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_create_account",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--name <name>",
+        "description": "Name for the new account.",
+        "required": true
+      },
+      {
+        "flags": "--description <description>",
+        "description": "Optional description.",
+        "required": false
+      },
+      {
+        "flags": "--initial-balance <n>",
+        "description": "Initial balance in account currency (default 0).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal steering build",
+    "domain": "portal",
+    "summary": "Change which mobile operators sit on a steering list that already exists, by driving the OCS web dashboard — the OCS REST API cannot edit list membership.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_build_steering_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--steering-list-id <n>",
+        "description": "ID of the steering list to modify.",
+        "required": true
+      },
+      {
+        "flags": "--add-operators <list>",
+        "description": "MCC-MNC codes to add (e.g. ['20801', '26201']). Comma-separated.",
+        "required": false
+      },
+      {
+        "flags": "--remove-operators <list>",
+        "description": "MCC-MNC codes to remove. Comma-separated.",
+        "required": false
+      },
+      {
+        "flags": "--operator-type <type>",
+        "description": "Whether operators are priority or excluded. One of: priority, excluded. Default \"priority\".",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal steering create",
+    "domain": "portal",
+    "summary": "Create a new, empty network steering list (OPLMN preference set) by driving the OCS web dashboard, because the OCS REST API cannot create one.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_create_steering_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--name <name>",
+        "description": "Name for the new steering list.",
+        "required": true
+      },
+      {
+        "flags": "--description <description>",
+        "description": "Optional description for the steering list.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal steering set-account",
+    "domain": "portal",
+    "summary": "Assigns or removes a steering list at the account level via the OCS web dashboard.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_set_account_steering_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--account-id <n>",
+        "description": "Account ID to assign the steering list to.",
+        "required": true
+      },
+      {
+        "flags": "--steering-list-id <n>",
+        "description": "Steering list ID to assign (0 to remove/unset).",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal relay request",
+    "domain": "portal",
+    "summary": "Drafts the parent-reseller/support request for reseller relay flags that are visible but read-only in the OCS portal at the current account tier.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ui_request_reseller_relay_change",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--reseller-id <n>",
+        "description": "Reseller id; defaults to the authenticated reseller.",
+        "required": false
+      },
+      {
+        "flags": "--relay-gy <bool>",
+        "description": "Desired Relay Gy state.",
+        "required": false
+      },
+      {
+        "flags": "--relay-calls-sms <bool>",
+        "description": "Desired calls/SMS relay state.",
+        "required": false
+      },
+      {
+        "flags": "--relay-voip <bool>",
+        "description": "Desired VoIP relay state.",
+        "required": false
+      },
+      {
+        "flags": "--reason <reason>",
+        "description": "Operational reason for the requested change.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal destinations create",
+    "domain": "portal",
+    "summary": "Creates a new destination list (named set of phone number prefixes for MOC call permissions) via the OCS web dashboard.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_create_destination_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--name <name>",
+        "description": "Name for the new destination list.",
+        "required": true
+      },
+      {
+        "flags": "--prefixes <list>",
+        "description": "Phone number prefixes to include (e.g. ['+31', '+49']). Comma-separated.",
+        "required": false
+      },
+      {
+        "flags": "--description <description>",
+        "description": "Optional description.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal destinations edit",
+    "domain": "portal",
+    "summary": "Edits an existing destination list via the OCS web dashboard.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_edit_destination_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--destination-list-id <n>",
+        "description": "ID of the destination list to edit.",
+        "required": true
+      },
+      {
+        "flags": "--add-prefixes <list>",
+        "description": "Prefixes to add. Comma-separated.",
+        "required": false
+      },
+      {
+        "flags": "--remove-prefixes <list>",
+        "description": "Prefixes to remove. Comma-separated.",
+        "required": false
+      },
+      {
+        "flags": "--new-name <name>",
+        "description": "Rename the destination list.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal destinations delete",
+    "domain": "portal",
+    "summary": "Delete a destination list — a named set of phone-number prefixes — by driving the OCS web dashboard.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_delete_destination_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--destination-list-id <n>",
+        "description": "ID of the destination list to delete.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal zones edit",
+    "domain": "portal",
+    "summary": "Edits an existing location zone via the OCS web dashboard. `create_location_zone` is available via API; edit is UI-only.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_edit_location_zone",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--zone-id <n>",
+        "description": "ID of the location zone to edit.",
+        "required": true
+      },
+      {
+        "flags": "--new-name <name>",
+        "description": "Rename the location zone.",
+        "required": false
+      },
+      {
+        "flags": "--add-countries <list>",
+        "description": "ISO country codes to add (e.g. ['NL', 'DE']). Comma-separated.",
+        "required": false
+      },
+      {
+        "flags": "--remove-countries <list>",
+        "description": "ISO country codes to remove. Comma-separated.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal zones delete",
+    "domain": "portal",
+    "summary": "Delete a location zone by driving the OCS web dashboard, because the OCS REST API can create a zone (`create_location_zone`) but not remove one.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_delete_location_zone",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--zone-id <n>",
+        "description": "ID of the location zone to delete.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier portal templates delete",
+    "domain": "portal",
+    "summary": "Remove a package template from the reseller's product catalogue for good, by driving the OCS web dashboard — the OCS REST API cannot delete a template.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "ui_delete_package_template",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--template-id <n>",
+        "description": "ID of the package template to delete.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier events ocs",
+    "domain": "events",
+    "summary": "Return the last N OCS events buffered for a given ICCID.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_recent_ocs_events",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "ICCID, 19 or 20 digits, ITU-T E.118 format.",
+        "required": true
+      },
+      {
+        "flags": "--limit <n>",
+        "description": "Max events to return, newest first. Default 20.",
+        "required": false
+      },
+      {
+        "flags": "--event-types <list>",
+        "description": "Filter to specific event types. Comma-separated.",
+        "required": false
+      },
+      {
+        "flags": "--since <since>",
+        "description": "ISO-8601 timestamp; only events after this point.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier events countries",
+    "domain": "events",
+    "summary": "Return cross-border movement history for a subscriber, reconstructed from OCS Gy charging events.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "subscriber_country_history",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--subscriber-id <id>",
+        "description": "Subscriber ICCID (19–20 digits, ITU-T E.118).",
+        "required": true
+      },
+      {
+        "flags": "--start-date <date>",
+        "description": "Start of the period, YYYY-MM-DD inclusive (default: 7 days ago).",
+        "required": false
+      },
+      {
+        "flags": "--end-date <date>",
+        "description": "End of the period, YYYY-MM-DD inclusive, max 7 days from start (default: today).",
+        "required": false
+      },
+      {
+        "flags": "--limit <n>",
+        "description": "Maximum number of country_events to return, newest first (default 20, max 50). Default 20.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier events depletion",
+    "domain": "events",
+    "summary": "Look up bundle depletion events for a subscriber (or list recent fleet-wide depletions).",
+    "write": false,
+    "transport": "mcp",
+    "tool": "subscriber_depletion_events",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--subscriber-id <id>",
+        "description": "OCS subscriber ID to look up.",
+        "required": false
+      },
+      {
+        "flags": "--since <since>",
+        "description": "ISO-8601 timestamp — only return events at or after this time (for single-subscriber lookup).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier panels fleet",
+    "domain": "panels",
+    "summary": "Fleet overview as a UI panel. Prefer `carrier intelligence fleet-health` in a terminal; use --json to read the panel's data.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "fleet_health_app",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--account-id <n>",
+        "description": "Filter to a specific account (omit for all).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier panels topup",
+    "domain": "panels",
+    "summary": "Adjust the OCS account balance behind one subscriber. Previews unless --preview false.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "balance_topup_form",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--iccid <iccid>",
+        "description": "The subscriber ICCID for the account lookup.",
+        "required": true
+      },
+      {
+        "flags": "--delta <n>",
+        "description": "Amount to add (positive) or deduct (negative) from the account balance.",
+        "required": true
+      },
+      {
+        "flags": "--preview <bool>",
+        "description": "If true, return preview without writing. Default true.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier panels provision",
+    "domain": "panels",
+    "summary": "Step through the provisioning wizard. Pass --step confirm to execute; every earlier step only reads.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "provision_esim_wizard",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--step <step>",
+        "description": "Current wizard step. One of: init, select-package, preview, confirm.",
+        "required": true
+      },
+      {
+        "flags": "--wizard-id <id>",
+        "description": "Wizard session ID (absent on init).",
+        "required": false
+      },
+      {
+        "flags": "--subscriber-iccid <iccid>",
+        "description": "Subscriber ICCID (required for select-package).",
+        "required": false
+      },
+      {
+        "flags": "--package-template-id <n>",
+        "description": "Package template ID (required for preview).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier env info",
+    "domain": "env",
+    "summary": "View your Carrier environment configuration — active organization, reseller details, connected services, and deployment environment.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "environment_info",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier env credentials",
+    "domain": "env",
+    "summary": "Report on the stored eSIMVault credential without changing it: whether a token is present, whether it is encrypted, how old it is, and whether rotation is recommended (over 90 days).",
+    "write": false,
+    "transport": "mcp",
+    "tool": "credential_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier env rotate",
+    "domain": "env",
+    "summary": "Replace the stored eSIMVault API token with one you supply.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "rotate_credentials",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--new-token <token>",
+        "description": "New eSIMVault API token to encrypt and store.",
+        "required": true
+      },
+      {
+        "flags": "--confirm <bool>",
+        "description": "Confirm rotation — this will replace the current token immediately.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier env catalog",
+    "domain": "env",
+    "summary": "Browse the Carrier service catalog — discover available services, their requirements, endpoints, and documentation.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "service_catalog",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--category <category>",
+        "description": "Filter services by category. One of: connectivity, analytics, marketplace, coverage, billing, integration, dashboard.",
+        "required": false
+      },
+      {
+        "flags": "--tier <tier>",
+        "description": "Filter services accessible at this tier level. One of: free, pro, enterprise.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier env llm-context",
+    "domain": "env",
+    "summary": "Generate a comprehensive LLM context document describing your Carrier environment, available tools, current tier, usage patterns, and best practices.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "llm_context",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--format <format>",
+        "description": "Output format for the context document (default: markdown). One of: markdown, json, yaml.",
+        "required": false
+      },
+      {
+        "flags": "--include-examples <bool>",
+        "description": "Include example tool invocations (default: true).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier env describe",
+    "domain": "env",
+    "summary": "Get full documentation for any registered Carrier MCP tool: description, parameters, 2-3 example invocations, required scope, destructive flag, and guidance.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "carrier_ask_describe",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--tool-name <name>",
+        "description": "The exact MCP tool name to describe (e.g. 'assign_package', 'hlr_set_bitrate').",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier brand logo",
+    "domain": "brand",
+    "summary": "Generate a storefront logo (SVG always; PNG when an image key is configured on the Carrier worker).",
+    "write": false,
+    "transport": "mcp",
+    "tool": "generate_storefront_logo",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--name <name>",
+        "description": "Brand / shop name, e.g. Bananas.",
+        "required": true
+      },
+      {
+        "flags": "--accent <accent>",
+        "description": "Accent hex, e.g. #FF8A00.",
+        "required": false
+      },
+      {
+        "flags": "--tagline <tagline>",
+        "description": "Optional tagline for AI-enhanced marks.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier atlas coverage",
+    "domain": "atlas",
+    "summary": "List the mobile networks Carrier Atlas has configured for one country.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "get_atlas_coverage",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--country <country>",
+        "description": "ISO 3166-1 alpha-2 country code, for example JP or NL.",
+        "required": true
+      },
+      {
+        "flags": "--status <status>",
+        "description": "Keep only networks whose latest probe has this status. One of: up, degraded, down, unknown.",
+        "required": false
+      },
+      {
+        "flags": "--technology <technology>",
+        "description": "Keep only networks of this radio generation. One of: 2G, 3G, 4G, 5G.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier atlas network",
+    "domain": "atlas",
+    "summary": "Read one mobile network from Carrier Atlas by MCC and MNC, including the latest status sample and the last 24 hours of probes.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "get_atlas_network_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--mcc <mcc>",
+        "description": "Mobile Country Code.",
+        "required": true
+      },
+      {
+        "flags": "--mnc <mnc>",
+        "description": "Mobile Network Code.",
+        "required": true
+      }
+    ]
+  }
+]
