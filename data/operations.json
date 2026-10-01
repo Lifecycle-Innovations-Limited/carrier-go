@@ -2706,6 +2706,28 @@
     "headerParams": []
   },
   {
+    "id": "update_storefront_plan",
+    "method": "PATCH",
+    "path": "/v1/storefronts/{id}/plans/{slug}",
+    "tag": "Storefront",
+    "summary": "Change the price, sale state, or display order of an existing plan. Omitted fields stay as stored. A plan on another storefront is not found.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "slug",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "health_check",
     "method": "GET",
     "path": "/health",
