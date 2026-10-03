@@ -2619,6 +2619,75 @@
     "headerParams": []
   },
   {
+    "id": "get_storefront_order_usage",
+    "method": "GET",
+    "path": "/api/orders/{orderId}/usage",
+    "tag": "Storefront",
+    "summary": "Data used by the order's own eSIM",
+    "security": "storefront",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "orderId",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "storefront",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "get_storefront_order_top_up_options",
+    "method": "GET",
+    "path": "/api/orders/{orderId}/top-up-options",
+    "tag": "Storefront",
+    "summary": "Plans the buyer can add to this order's eSIM",
+    "security": "storefront",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "orderId",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "storefront",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "cancel_storefront_order",
+    "method": "POST",
+    "path": "/api/orders/{orderId}/cancel",
+    "tag": "Storefront",
+    "summary": "Record the buyer's cancel",
+    "security": "storefront",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "orderId",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "storefront",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
     "id": "get_storefront_order",
     "method": "GET",
     "path": "/api/orders/{orderId}",
@@ -2707,6 +2776,32 @@
         "required": true
       }
     ]
+  },
+  {
+    "id": "list_storefront_orders",
+    "method": "GET",
+    "path": "/v1/storefronts/orders",
+    "tag": "Storefront",
+    "summary": "List orders across the caller's storefronts, newest first. Metadata only — no ICCID, QR, or activation codes.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "storefront_id",
+        "required": false
+      },
+      {
+        "name": "status",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "required": false
+      }
+    ],
+    "headerParams": []
   },
   {
     "id": "get_storefront",

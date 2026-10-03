@@ -11,7 +11,7 @@ import (
 )
 
 func TestPublicModulePath(t *testing.T) {
-	if version != "0.1.6" {
+	if version != "0.1.7" {
 		t.Fatalf("version %s", version)
 	}
 	mod, err := os.ReadFile("go.mod")
