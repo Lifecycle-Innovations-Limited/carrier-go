@@ -1699,6 +1699,45 @@
     "options": []
   },
   {
+    "invocation": "carrier affiliate status",
+    "domain": "affiliate",
+    "summary": "Read-only: returns the affiliate profile, referral code, link, counts, money owed and paid, and Connect payouts status for the authenticated operator.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "affiliate_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier affiliate commissions",
+    "domain": "affiliate",
+    "summary": "Read-only: returns the list of commission records for the authenticated operator.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "affiliate_commissions",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--limit <n>",
+        "description": "Maximum number of commission records to return (1-200, default: 50). Default 50.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier affiliate join",
+    "domain": "affiliate",
+    "summary": "Join the Carrier affiliate program and generate a personal referral code and link.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "affiliate_join",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
     "invocation": "carrier billing events",
     "domain": "billing",
     "summary": "View recent billing threshold events: notifications, invoice triggers, hard cap alerts, and overage pauses.",

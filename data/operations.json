@@ -1340,6 +1340,63 @@
     "headerParams": []
   },
   {
+    "id": "affiliates_me_get",
+    "method": "GET",
+    "path": "/v1/affiliates/me",
+    "tag": "Affiliates",
+    "summary": "Get this org's affiliate link, referral count, earnings and payout status",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "affiliates_me_create",
+    "method": "POST",
+    "path": "/v1/affiliates/me",
+    "tag": "Affiliates",
+    "summary": "Join the affiliate programme (idempotent: returns the existing code)",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "affiliates_me_commissions_list",
+    "method": "GET",
+    "path": "/v1/affiliates/me/commissions",
+    "tag": "Affiliates",
+    "summary": "List commissions for this org, newest period first",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "affiliates_link",
+    "method": "POST",
+    "path": "/v1/affiliates/link",
+    "tag": "Affiliates",
+    "summary": "Attach a referral code to an organization created less than 30 minutes ago (browser sign-up only)",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "operator_identity_status",
     "method": "GET",
     "path": "/v1/operator-billing/identity/status",
