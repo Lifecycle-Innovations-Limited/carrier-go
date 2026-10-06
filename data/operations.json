@@ -2747,6 +2747,28 @@
     "headerParams": []
   },
   {
+    "id": "get_hosted_storefront_plan_readiness",
+    "method": "GET",
+    "path": "/api/hosted/{slug}/plans/{planId}/readiness",
+    "tag": "Storefront",
+    "summary": "Read-only readiness check using the fulfilment owner's account rules",
+    "security": "public",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "slug",
+        "required": true
+      },
+      {
+        "name": "planId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "list_storefronts",
     "method": "GET",
     "path": "/v1/storefronts",
