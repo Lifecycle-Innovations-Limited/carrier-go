@@ -14,7 +14,7 @@ import (
 
 const (
 	defaultBaseURL   = "https://api.carrier.llc"
-	version          = "0.1.8"
+	version          = "0.1.9"
 	maxResponseBytes = 2 << 20
 	defaultTimeout   = 30 * time.Second
 )
