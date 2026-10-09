@@ -1177,6 +1177,41 @@
     "headerParams": []
   },
   {
+    "id": "operator_billing_list_charges",
+    "method": "GET",
+    "path": "/v1/operator-billing/charges",
+    "tag": "Operator Billing",
+    "summary": "List storefront payments (charges) on this operator's connected Stripe account",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "starting_after",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "operator_billing_get_balance",
+    "method": "GET",
+    "path": "/v1/operator-billing/balance",
+    "tag": "Operator Billing",
+    "summary": "Available and pending balance on this operator's connected Stripe account",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "operator_billing_list_refunds",
     "method": "GET",
     "path": "/v1/operator-billing/refunds",
@@ -1228,6 +1263,10 @@
       },
       {
         "name": "offset",
+        "required": false
+      },
+      {
+        "name": "status",
         "required": false
       }
     ],
