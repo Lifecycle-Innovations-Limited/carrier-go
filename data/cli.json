@@ -1941,6 +1941,28 @@
     ]
   },
   {
+    "invocation": "carrier stripe charges",
+    "domain": "stripe",
+    "summary": "List recent payments (charges) on the operator's connected Stripe account, e.g. storefront purchases.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "stripe_connect_charges_list",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--limit <n>",
+        "description": "Number of charges to return. Default 20.",
+        "required": false
+      },
+      {
+        "flags": "--starting-after <after>",
+        "description": "Charge id to page after.",
+        "required": false
+      }
+    ]
+  },
+  {
     "invocation": "carrier stripe disputes",
     "domain": "stripe",
     "summary": "List chargebacks customers have raised with their bank against the operator's connected Stripe account.",
