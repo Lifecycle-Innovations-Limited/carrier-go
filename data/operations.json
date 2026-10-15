@@ -1339,7 +1339,7 @@
     "method": "POST",
     "path": "/v1/operator-billing/fraud/reviews/{id}/decline",
     "tag": "Operator Billing",
-    "summary": "Decline a Radar review (admin scope required)",
+    "summary": "Not supported: Stripe has no Radar review decline (admin scope required)",
     "security": "bearer",
     "body": false,
     "bodyRequired": false,

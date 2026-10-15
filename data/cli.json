@@ -2028,7 +2028,7 @@
     "options": [
       {
         "flags": "--open-only <bool>",
-        "description": "If true, only returns open (undecided) reviews. Default true.",
+        "description": "Stripe lists only open (undecided) reviews; kept for compatibility. Default true.",
         "required": false
       },
       {
@@ -2063,7 +2063,7 @@
   {
     "invocation": "carrier radar decline",
     "domain": "radar",
-    "summary": "Close a Stripe Radar fraud review as fraudulent, so the held charge is blocked and the customer is never billed.",
+    "summary": "Always refuses and calls nothing: Stripe has no endpoint to decline a Radar review (its Reviews API only lists, retrieves and approves).",
     "write": false,
     "transport": "mcp",
     "tool": "radar_review_decline",
