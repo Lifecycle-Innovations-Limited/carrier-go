@@ -41,7 +41,15 @@ Webhook deliveries use `Carrier-Signature: t=<unix>,v1=<hex>` over `{timestamp}.
 ok := carrier.VerifyWebhookSignature(rawBody, header, secret, carrier.DefaultWebhookToleranceSeconds, time.Now())
 ```
 
-`*carrier.Error` carries `Status`, `Code`, and `Type` from the API error envelope. A blank API key or idempotency key fails before a request is sent.
+`*carrier.Error` carries `Status`, `Code`, and `Type` from the API error envelope. A blank API key fails before a request is sent.
+
+## Issuance safety (0.1.11)
+
+For `Intents.Create` and `Call(ctx, "issue_esim_from_inventory", ...)`, supply a stable business key. Issuance keys must match `[A-Za-z0-9][A-Za-z0-9_.:-]{0,199}`. They are never trimmed or replaced. Invalid keys fail before transport; nonissuance operations retain their existing key rules.
+
+Transport loss, response-read failure, or response-decode failure after an issuance call returns `*carrier.Error` with `Code == "outcome_unknown"`, the unchanged `IdempotencyKey`, and `Retryable == false`. The SDK does not retry dispatch or mint a new key. Reconcile the original operation using that key; do not automatically reissue. A complete valid API error keeps its server status, code, message, and type. This is not a provider exactly-once guarantee.
+
+Issuance requests disable `net/http` body replay and redirects. `WithHTTPClient` preserves the caller's transport, timeout, cookie jar, and nonissuance redirect policy; the SDK does not mutate that client. A custom `RoundTripper` must not add its own issuance retries.
 
 Every public operation:
 

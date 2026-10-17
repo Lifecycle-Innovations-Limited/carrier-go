@@ -1,6 +1,22 @@
 package carrier
 
-import "strings"
+import (
+	"regexp"
+	"strings"
+)
+
+var issuanceKeyPattern = regexp.MustCompile(`^[A-Za-z0-9][A-Za-z0-9_.:-]{0,199}$`)
+
+func isIssuance(method, path string) bool {
+	return method == "POST" && (path == "/v1/connectivity/intents" || path == "/v1/subscribers/issue-from-inventory")
+}
+
+func requireIssuanceKey(key string) (string, error) {
+	if !issuanceKeyPattern.MatchString(key) {
+		return "", invalidRequest("invalid_idempotency_key", "Issuance requires a stable 1–200 character key: alphanumeric first, then letters, digits, _, ., :, or -.")
+	}
+	return key, nil
+}
 
 func requireIdempotencyKey(key string) (string, error) {
 	if strings.TrimSpace(key) == "" {
