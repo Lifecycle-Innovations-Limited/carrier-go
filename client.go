@@ -10,11 +10,12 @@ import (
 	"net/url"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 const (
 	defaultBaseURL   = "https://api.carrier.llc"
-	version          = "0.1.10"
+	version          = "0.1.14"
 	maxResponseBytes = 2 << 20
 	defaultTimeout   = 30 * time.Second
 )
@@ -116,11 +117,34 @@ func (c *Client) doRequest(ctx context.Context, method, path string, query url.V
 	if payload != nil {
 		req.Header.Set("Content-Type", "application/json")
 	}
+	issuance := isIssuance(method, path)
+	key := idempotencyKey
+	if issuance {
+		if key == "" {
+			key = req.Header.Get("X-Idempotency-Key")
+		}
+		if _, err := requireIssuanceKey(key); err != nil {
+			return err
+		}
+	}
 	if idempotencyKey != "" {
 		req.Header.Set("Idempotency-Key", idempotencyKey)
 	}
-	resp, err := c.http.Do(req)
+	requestClient := c.http
+	if issuance {
+		// Payload-bearing POSTs cannot be replayed even with Idempotency-Key.
+		// The public operation validates a required body before reaching here.
+		req.GetBody = nil
+		// Copy policy, not transport: never mutate the caller's client.
+		oneAttempt := *c.http
+		oneAttempt.CheckRedirect = func(*http.Request, []*http.Request) error { return http.ErrUseLastResponse }
+		requestClient = &oneAttempt
+	}
+	resp, err := requestClient.Do(req)
 	if err != nil {
+		if issuance {
+			return outcomeUnknown(key, 0, err)
+		}
 		if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
 			return err
 		}
@@ -129,21 +153,44 @@ func (c *Client) doRequest(ctx context.Context, method, path string, query url.V
 	defer resp.Body.Close()
 	raw, err := io.ReadAll(io.LimitReader(resp.Body, maxResponseBytes+1))
 	if err != nil {
+		if issuance {
+			return outcomeUnknown(key, resp.StatusCode)
+		}
 		return apiFailure(0, "network_error", err.Error(), "api_error")
 	}
 	if int64(len(raw)) > maxResponseBytes {
+		if issuance {
+			return outcomeUnknown(key, resp.StatusCode)
+		}
 		return apiFailure(resp.StatusCode, "invalid_response", "Carrier returned a response that is too large.", "api_error")
 	}
+	if issuance && !utf8.Valid(raw) {
+		return outcomeUnknown(key, resp.StatusCode)
+	}
 	if !json.Valid(raw) {
+		if issuance {
+			return outcomeUnknown(key, resp.StatusCode)
+		}
 		return apiFailure(resp.StatusCode, "invalid_response", "Carrier returned a body that is not JSON.", "api_error")
 	}
 	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		return errorFromBody(resp.StatusCode, raw)
+		if issuance && resp.StatusCode >= 300 && resp.StatusCode < 400 {
+			return outcomeUnknown(key, resp.StatusCode)
+		}
+		serverError := errorFromBody(resp.StatusCode, raw)
+		if issuance && (strings.EqualFold(serverError.Code, "outcome_unknown") || strings.EqualFold(serverError.Code, "manual_reconciliation_required")) {
+			serverError.IdempotencyKey = key
+			serverError.Retryable = false
+		}
+		return serverError
 	}
 	if dest == nil {
 		return nil
 	}
 	if err := json.Unmarshal(raw, dest); err != nil {
+		if issuance {
+			return outcomeUnknown(key, resp.StatusCode)
+		}
 		return apiFailure(resp.StatusCode, "invalid_response", "Carrier returned a body that could not be read.", "api_error")
 	}
 	return nil

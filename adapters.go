@@ -145,7 +145,13 @@ func inputSchema(spec Operation) (json.RawMessage, error) {
 		if field == "" {
 			field = param.Name
 		}
-		properties[field] = map[string]any{"type": "string", "description": param.Name}
+		schema := map[string]any{"type": "string", "description": param.Name}
+		if isIssuance(spec.Method, spec.Path) && field == "idempotency_key" {
+			schema["minLength"] = 1
+			schema["maxLength"] = 200
+			schema["pattern"] = "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,199}$"
+		}
+		properties[field] = schema
 		if param.Required {
 			required = append(required, field)
 		}
