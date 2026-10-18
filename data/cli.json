@@ -568,7 +568,47 @@
       },
       {
         "flags": "--account-id <id>",
-        "description": "Auto-pick a free eSIM from this account instead of using --iccid",
+        "description": "Issue from inventory through the authenticated Carrier API; requires --request-key; preserve it after unknown outcomes",
+        "required": false
+      },
+      {
+        "flags": "--request-key <key>",
+        "description": "Required stable inventory key (1–200 safe characters); preserved after unknown outcomes",
+        "required": false
+      },
+      {
+        "flags": "--start-date <date>",
+        "description": "Inventory package start date",
+        "required": false
+      },
+      {
+        "flags": "--end-date <date>",
+        "description": "Inventory package end date",
+        "required": false
+      },
+      {
+        "flags": "--validity-period <days>",
+        "description": "Inventory package validity period",
+        "required": false
+      },
+      {
+        "flags": "--business-kind <kind>",
+        "description": "Authorized reference kind: storefront_order",
+        "required": false
+      },
+      {
+        "flags": "--business-id <id>",
+        "description": "Existing API-authorized order ID",
+        "required": false
+      },
+      {
+        "flags": "--business-line <line>",
+        "description": "Authorized reference line: esim",
+        "required": false
+      },
+      {
+        "flags": "--business-verb <verb>",
+        "description": "Authorized reference verb: issue",
         "required": false
       }
     ]
@@ -1885,7 +1925,7 @@
     "options": [
       {
         "flags": "--pack <pack>",
-        "description": "Pack id (pack_500/pack_1000/pack_2500/pack_5000) or exact EUR-cents amount.",
+        "description": "Pack id (pack_25/pack_50/pack_100/pack_500/pack_1000/pack_2500/pack_5000) or exact EUR-cents amount.",
         "required": false
       }
     ]
@@ -2028,7 +2068,7 @@
     "options": [
       {
         "flags": "--open-only <bool>",
-        "description": "If true, only returns open (undecided) reviews. Default true.",
+        "description": "Stripe lists only open (undecided) reviews; kept for compatibility. Default true.",
         "required": false
       },
       {
@@ -2063,7 +2103,7 @@
   {
     "invocation": "carrier radar decline",
     "domain": "radar",
-    "summary": "Close a Stripe Radar fraud review as fraudulent, so the held charge is blocked and the customer is never billed.",
+    "summary": "Always refuses and calls nothing: Stripe has no endpoint to decline a Radar review (its Reviews API only lists, retrieves and approves).",
     "write": false,
     "transport": "mcp",
     "tool": "radar_review_decline",
