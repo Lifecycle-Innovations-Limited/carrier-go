@@ -2950,7 +2950,7 @@
     "method": "PATCH",
     "path": "/v1/storefronts/{id}/plans/{slug}",
     "tag": "Storefront",
-    "summary": "Change the price, sale state, or display order of an existing plan. Omitted fields stay as stored. A plan on another storefront is not found.",
+    "summary": "Change the price, sale state, display order, or stored Stripe Price of an existing plan. The Price id and its mode are set together; null clears both. The Price is stored, not yet charged. Omitted fields stay as stored. A plan on another storefront is not found.",
     "security": "bearer",
     "body": true,
     "bodyRequired": true,
