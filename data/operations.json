@@ -2968,6 +2968,65 @@
     "headerParams": []
   },
   {
+    "id": "publish_storefront",
+    "method": "POST",
+    "path": "/v1/storefronts/{id}/publish",
+    "tag": "Storefront",
+    "summary": "Publish a hosted storefront. The catalogue and published status commit in one write. Readiness is computed on the server.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "Idempotency-Key",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "plan_storefront_publish",
+    "method": "POST",
+    "path": "/v1/storefronts/{id}/publish-plan",
+    "tag": "Storefront",
+    "summary": "Preview a publish. Reads the shop and returns readiness. Does not write the catalogue or call a probe.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "unpublish_storefront",
+    "method": "POST",
+    "path": "/v1/storefronts/{id}/unpublish",
+    "tag": "Storefront",
+    "summary": "Return a hosted storefront to draft. Orders, plans, the custom domain, and notification settings stay.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "health_check",
     "method": "GET",
     "path": "/health",
