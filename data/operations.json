@@ -2426,6 +2426,28 @@
     "headerParams": []
   },
   {
+    "id": "issue_benefit_claim",
+    "method": "POST",
+    "path": "/v1/connectivity/benefit-campaigns/{id}/claims/{claimId}/issue",
+    "tag": "Connectivity",
+    "summary": "Issue the eSIM for a held claim",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "claimId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "record_experiment_event",
     "method": "POST",
     "path": "/v1/connectivity/experiment-events",
