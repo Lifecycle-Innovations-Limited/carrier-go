@@ -2185,6 +2185,287 @@
     "headerParams": []
   },
   {
+    "id": "create_connectivity_offering",
+    "method": "POST",
+    "path": "/v1/connectivity/offerings",
+    "tag": "Connectivity",
+    "summary": "Save an incomplete connectivity offer",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "Idempotency-Key",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "list_connectivity_offerings",
+    "method": "GET",
+    "path": "/v1/connectivity/offerings",
+    "tag": "Connectivity",
+    "summary": "List this organization's drafts",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "after",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "list_connectivity_offering_templates",
+    "method": "GET",
+    "path": "/v1/connectivity/offerings/templates",
+    "tag": "Connectivity",
+    "summary": "Choose a versioned connectivity concept starter",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "create_connectivity_offering_from_template",
+    "method": "POST",
+    "path": "/v1/connectivity/offerings/from-template",
+    "tag": "Connectivity",
+    "summary": "Start a private draft from a selected template version",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "Idempotency-Key",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get_connectivity_offering_revision",
+    "method": "GET",
+    "path": "/v1/connectivity/offerings/{id}/revisions/{revision}",
+    "tag": "Connectivity",
+    "summary": "Read an immutable concept revision",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "revision",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "validate_connectivity_offering_revision",
+    "method": "GET",
+    "path": "/v1/connectivity/offerings/{id}/revisions/{revision}/validation",
+    "tag": "Connectivity",
+    "summary": "Check which referenced products exist for this organization",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "revision",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_connectivity_offering_template_source",
+    "method": "GET",
+    "path": "/v1/connectivity/offerings/{id}/template",
+    "tag": "Connectivity",
+    "summary": "Read the original starter setup and measurement suggestions",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "duplicate_connectivity_offering",
+    "method": "POST",
+    "path": "/v1/connectivity/offerings/{id}/duplicate",
+    "tag": "Connectivity",
+    "summary": "Copy a selected revision into a new concept",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "Idempotency-Key",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get_connectivity_offering",
+    "method": "GET",
+    "path": "/v1/connectivity/offerings/{id}",
+    "tag": "Connectivity",
+    "summary": "Read an offering draft",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "update_connectivity_offering",
+    "method": "PATCH",
+    "path": "/v1/connectivity/offerings/{id}",
+    "tag": "Connectivity",
+    "summary": "Edit a draft with revision protection",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "create_benefit_campaign",
+    "method": "POST",
+    "path": "/v1/connectivity/benefit-campaigns",
+    "tag": "Connectivity",
+    "summary": "Create a sponsored benefit campaign",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "set_benefit_campaign_status",
+    "method": "POST",
+    "path": "/v1/connectivity/benefit-campaigns/{id}/status",
+    "tag": "Connectivity",
+    "summary": "Pause or resume a campaign",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "claim_benefit",
+    "method": "POST",
+    "path": "/v1/connectivity/benefit-campaigns/{id}/claims",
+    "tag": "Connectivity",
+    "summary": "Reserve one sponsored claim",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "record_experiment_event",
+    "method": "POST",
+    "path": "/v1/connectivity/experiment-events",
+    "tag": "Connectivity",
+    "summary": "Store one experiment event",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "experiment_report",
+    "method": "GET",
+    "path": "/v1/connectivity/experiment-events/{experimentId}/report",
+    "tag": "Connectivity",
+    "summary": "Counts for one experiment",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "experimentId",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "from",
+        "required": true
+      },
+      {
+        "name": "to",
+        "required": true
+      }
+    ],
+    "headerParams": []
+  },
+  {
     "id": "list_connectivity_products",
     "method": "GET",
     "path": "/v1/connectivity/products",
