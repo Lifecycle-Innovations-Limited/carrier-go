@@ -2466,6 +2466,28 @@
     "headerParams": []
   },
   {
+    "id": "reconcile_benefit_claim",
+    "method": "POST",
+    "path": "/v1/connectivity/benefit-campaigns/{id}/claims/{claimId}/reconcile",
+    "tag": "Connectivity",
+    "summary": "Close a claim whose issuance ended in an unknown outcome",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "claimId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "record_experiment_event",
     "method": "POST",
     "path": "/v1/connectivity/experiment-events",
