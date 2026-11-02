@@ -1778,6 +1778,17 @@
     "options": []
   },
   {
+    "invocation": "carrier offerings templates",
+    "domain": "offerings",
+    "summary": "List the versioned starter templates for a connectivity offering, for example travel-booking, own-brand and member-benefit.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_connectivity_offering_templates",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
     "invocation": "carrier billing events",
     "domain": "billing",
     "summary": "View recent billing threshold events: notifications, invoice triggers, hard cap alerts, and overage pauses.",
