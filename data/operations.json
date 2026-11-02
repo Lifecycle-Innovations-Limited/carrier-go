@@ -2408,6 +2408,24 @@
     "headerParams": []
   },
   {
+    "id": "create_benefit_entitlement",
+    "method": "POST",
+    "path": "/v1/connectivity/benefit-campaigns/{id}/entitlements",
+    "tag": "Connectivity",
+    "summary": "Issue one claim right",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "claim_benefit",
     "method": "POST",
     "path": "/v1/connectivity/benefit-campaigns/{id}/claims",
