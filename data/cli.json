@@ -1789,6 +1789,92 @@
     "options": []
   },
   {
+    "invocation": "carrier benefits create",
+    "domain": "benefits",
+    "summary": "Create a member-benefit campaign: a capped number of eSIM claims for one offering revision, each costing a fixed amount from your sponsor wallet.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "create_benefit_campaign",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--offering-id <id>",
+        "description": "Offering the campaign issues from.",
+        "required": true
+      },
+      {
+        "flags": "--revision <n>",
+        "description": "Offering revision, 1 or higher.",
+        "required": true
+      },
+      {
+        "flags": "--max-claims <n>",
+        "description": "Most claims the campaign accepts.",
+        "required": true
+      },
+      {
+        "flags": "--cost-cents <n>",
+        "description": "Cost of one claim in cents.",
+        "required": true
+      },
+      {
+        "flags": "--expires-at <n>",
+        "description": "Expiry as epoch milliseconds.",
+        "required": true
+      },
+      {
+        "flags": "--product-id <id>",
+        "description": "Optional product to issue from.",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier benefits claim",
+    "domain": "benefits",
+    "summary": "Claim one benefit from a campaign for an external reference, which places a hold on the sponsor wallet.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "claim_benefit",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--campaign-id <id>",
+        "description": "Campaign id, cbc_ followed by 32 hex characters.",
+        "required": true
+      },
+      {
+        "flags": "--external-ref <ref>",
+        "description": "Your own reference for the claimant, 1 to 200 characters.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier benefits issue",
+    "domain": "benefits",
+    "summary": "Issue ONE REAL eSIM for a held claim and settle the wallet hold.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "issue_benefit_claim",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--campaign-id <id>",
+        "description": "Campaign id, cbc_ followed by 32 hex characters.",
+        "required": true
+      },
+      {
+        "flags": "--claim-id <id>",
+        "description": "Claim id from claim_benefit, cbl_ followed by 32 hex characters.",
+        "required": true
+      }
+    ]
+  },
+  {
     "invocation": "carrier billing events",
     "domain": "billing",
     "summary": "View recent billing threshold events: notifications, invoice triggers, hard cap alerts, and overage pauses.",
