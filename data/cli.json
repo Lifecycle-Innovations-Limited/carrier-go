@@ -1831,6 +1831,55 @@
     ]
   },
   {
+    "invocation": "carrier benefits status",
+    "domain": "benefits",
+    "summary": "Pause a campaign so it accepts no new claims, or resume it.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "set_benefit_campaign_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--campaign-id <id>",
+        "description": "Campaign id, cbc_ followed by 32 hex characters.",
+        "required": true
+      },
+      {
+        "flags": "--status <status>",
+        "description": "The status to set. One of: active, paused.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier benefits entitle",
+    "domain": "benefits",
+    "summary": "Issue ONE single-use right for one external booking or member reference, which the claimant presents to claim a benefit.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "create_benefit_entitlement",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--campaign-id <id>",
+        "description": "Campaign id, cbc_ followed by 32 hex characters.",
+        "required": true
+      },
+      {
+        "flags": "--external-ref <ref>",
+        "description": "Your own reference for the person, 1 to 200 characters.",
+        "required": true
+      },
+      {
+        "flags": "--ttl-ms <n>",
+        "description": "Lifetime of the right in milliseconds.",
+        "required": false
+      }
+    ]
+  },
+  {
     "invocation": "carrier benefits claim",
     "domain": "benefits",
     "summary": "Claim one benefit from a campaign for an external reference, which places a hold on the sponsor wallet.",
@@ -1870,6 +1919,92 @@
       {
         "flags": "--claim-id <id>",
         "description": "Claim id from claim_benefit, cbl_ followed by 32 hex characters.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier benefits reconcile",
+    "domain": "benefits",
+    "summary": "Ask the provider what happened to a claim whose issuance ended in an unknown outcome.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "reconcile_benefit_claim",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--campaign-id <id>",
+        "description": "Campaign id, cbc_ followed by 32 hex characters.",
+        "required": true
+      },
+      {
+        "flags": "--claim-id <id>",
+        "description": "Claim id, cbl_ followed by 32 hex characters.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier experiments record",
+    "domain": "experiments",
+    "summary": "Record ONE event of an experiment: what a participant saw or did.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "record_experiment_event",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--event-id <id>",
+        "description": "Your own id for this event.",
+        "required": true
+      },
+      {
+        "flags": "--experiment-id <id>",
+        "description": "The experiment this event belongs to.",
+        "required": true
+      },
+      {
+        "flags": "--revision <n>",
+        "description": "The revision of the experiment.",
+        "required": true
+      },
+      {
+        "flags": "--link <link>",
+        "description": "The participant this event is about.",
+        "required": true
+      },
+      {
+        "flags": "--measure <measure>",
+        "description": "What the participant did. One of: viewed, confirmed, issued, first_data.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier experiments report",
+    "domain": "experiments",
+    "summary": "Count the events of one experiment per measure inside a time window.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "experiment_report",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--experiment-id <id>",
+        "description": "The experiment to report on.",
+        "required": true
+      },
+      {
+        "flags": "--from <n>",
+        "description": "Start of the window, epoch milliseconds.",
+        "required": true
+      },
+      {
+        "flags": "--to <n>",
+        "description": "End of the window, epoch milliseconds, exclusive.",
         "required": true
       }
     ]

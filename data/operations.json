@@ -2377,6 +2377,77 @@
     "headerParams": []
   },
   {
+    "id": "create_connectivity_link",
+    "method": "POST",
+    "path": "/v1/connectivity/links",
+    "tag": "Connectivity",
+    "summary": "Create a share link for one offering revision",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_connectivity_links",
+    "method": "GET",
+    "path": "/v1/connectivity/links",
+    "tag": "Connectivity",
+    "summary": "List the share links of the caller's org",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "after",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "set_connectivity_link_status",
+    "method": "POST",
+    "path": "/v1/connectivity/links/{id}/status",
+    "tag": "Connectivity",
+    "summary": "Pause, resume or expire a share link",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "resolve_connectivity_public_link",
+    "method": "GET",
+    "path": "/v1/connectivity/public-links/{publicId}",
+    "tag": "Connectivity",
+    "summary": "Resolve a public share link",
+    "security": "public",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "publicId",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "create_benefit_campaign",
     "method": "POST",
     "path": "/v1/connectivity/benefit-campaigns",
