@@ -2461,6 +2461,28 @@
     "headerParams": []
   },
   {
+    "id": "list_benefit_campaigns",
+    "method": "GET",
+    "path": "/v1/connectivity/benefit-campaigns",
+    "tag": "Connectivity",
+    "summary": "List the sponsored benefit campaigns of the org",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "after",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
     "id": "set_benefit_campaign_status",
     "method": "POST",
     "path": "/v1/connectivity/benefit-campaigns/{id}/status",
@@ -2494,6 +2516,33 @@
       }
     ],
     "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_benefit_claims",
+    "method": "GET",
+    "path": "/v1/connectivity/benefit-campaigns/{id}/claims",
+    "tag": "Connectivity",
+    "summary": "List the claims of one campaign",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "limit",
+        "required": false
+      },
+      {
+        "name": "after",
+        "required": false
+      }
+    ],
     "headerParams": []
   },
   {
