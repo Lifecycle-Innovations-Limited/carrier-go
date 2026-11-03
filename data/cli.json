@@ -1589,7 +1589,7 @@
     "invocation": "carrier api-keys create",
     "domain": "api-keys",
     "summary": "Create an org API key. The secret is shown once and never stored by the CLI.",
-    "write": false,
+    "write": true,
     "transport": "rest",
     "tool": null,
     "restMethod": "POST",
@@ -1627,7 +1627,7 @@
     "invocation": "carrier onboard org",
     "domain": "onboard",
     "summary": "Record who the operator is (step 1).",
-    "write": false,
+    "write": true,
     "transport": "rest",
     "tool": null,
     "restMethod": "POST",
@@ -1659,7 +1659,7 @@
     "invocation": "carrier onboard connect",
     "domain": "onboard",
     "summary": "Connect your own eSIMVault token (step 2, BYO). Verified against OCS, then stored encrypted; the token is never echoed back.",
-    "write": false,
+    "write": true,
     "transport": "rest",
     "tool": null,
     "restMethod": "POST",
@@ -1676,7 +1676,7 @@
     "invocation": "carrier onboard managed",
     "domain": "onboard",
     "summary": "Let Carrier provision the OCS sub-account instead (step 2, the primary path). Idempotent, and clears any BYO token.",
-    "write": false,
+    "write": true,
     "transport": "rest",
     "tool": null,
     "restMethod": "POST",
@@ -1687,7 +1687,7 @@
     "invocation": "carrier onboard plan",
     "domain": "onboard",
     "summary": "Record the starting plan template (step 3).",
-    "write": false,
+    "write": true,
     "transport": "rest",
     "tool": null,
     "restMethod": "POST",
@@ -1709,7 +1709,7 @@
     "invocation": "carrier onboard plan-skip",
     "domain": "onboard",
     "summary": "Skip the plan step and come back to it later (step 3).",
-    "write": false,
+    "write": true,
     "transport": "rest",
     "tool": null,
     "restMethod": "POST",
@@ -1720,7 +1720,7 @@
     "invocation": "carrier onboard test-esim",
     "domain": "onboard",
     "summary": "Read back one eSIM from the connected fleet (step 4). Nothing is provisioned; a demo ICCID with a reason comes back if OCS has nothing to show.",
-    "write": false,
+    "write": true,
     "transport": "rest",
     "tool": null,
     "restMethod": "POST",
@@ -1731,7 +1731,7 @@
     "invocation": "carrier onboard complete",
     "domain": "onboard",
     "summary": "Mark onboarding done (step 5).",
-    "write": false,
+    "write": true,
     "transport": "rest",
     "tool": null,
     "restMethod": "POST",
@@ -1770,7 +1770,7 @@
     "invocation": "carrier affiliate join",
     "domain": "affiliate",
     "summary": "Join the Carrier affiliate program and generate a personal referral code and link.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "affiliate_join",
     "restMethod": null,
@@ -1792,7 +1792,7 @@
     "invocation": "carrier benefits create",
     "domain": "benefits",
     "summary": "Create a member-benefit campaign: a capped number of eSIM claims for one offering revision, each costing a fixed amount from your sponsor wallet.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "create_benefit_campaign",
     "restMethod": null,
@@ -1831,10 +1831,59 @@
     ]
   },
   {
+    "invocation": "carrier benefits status",
+    "domain": "benefits",
+    "summary": "Pause a campaign so it accepts no new claims, or resume it.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "set_benefit_campaign_status",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--campaign-id <id>",
+        "description": "Campaign id, cbc_ followed by 32 hex characters.",
+        "required": true
+      },
+      {
+        "flags": "--status <status>",
+        "description": "The status to set. One of: active, paused.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier benefits entitle",
+    "domain": "benefits",
+    "summary": "Issue ONE single-use right for one external booking or member reference, which the claimant presents to claim a benefit.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "create_benefit_entitlement",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--campaign-id <id>",
+        "description": "Campaign id, cbc_ followed by 32 hex characters.",
+        "required": true
+      },
+      {
+        "flags": "--external-ref <ref>",
+        "description": "Your own reference for the person, 1 to 200 characters.",
+        "required": true
+      },
+      {
+        "flags": "--ttl-ms <n>",
+        "description": "Lifetime of the right in milliseconds.",
+        "required": false
+      }
+    ]
+  },
+  {
     "invocation": "carrier benefits claim",
     "domain": "benefits",
     "summary": "Claim one benefit from a campaign for an external reference, which places a hold on the sponsor wallet.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "claim_benefit",
     "restMethod": null,
@@ -1856,7 +1905,7 @@
     "invocation": "carrier benefits issue",
     "domain": "benefits",
     "summary": "Issue ONE REAL eSIM for a held claim and settle the wallet hold.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "issue_benefit_claim",
     "restMethod": null,
@@ -1870,6 +1919,92 @@
       {
         "flags": "--claim-id <id>",
         "description": "Claim id from claim_benefit, cbl_ followed by 32 hex characters.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier benefits reconcile",
+    "domain": "benefits",
+    "summary": "Ask the provider what happened to a claim whose issuance ended in an unknown outcome.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "reconcile_benefit_claim",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--campaign-id <id>",
+        "description": "Campaign id, cbc_ followed by 32 hex characters.",
+        "required": true
+      },
+      {
+        "flags": "--claim-id <id>",
+        "description": "Claim id, cbl_ followed by 32 hex characters.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier experiments record",
+    "domain": "experiments",
+    "summary": "Record ONE event of an experiment: what a participant saw or did.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "record_experiment_event",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--event-id <id>",
+        "description": "Your own id for this event.",
+        "required": true
+      },
+      {
+        "flags": "--experiment-id <id>",
+        "description": "The experiment this event belongs to.",
+        "required": true
+      },
+      {
+        "flags": "--revision <n>",
+        "description": "The revision of the experiment.",
+        "required": true
+      },
+      {
+        "flags": "--link <link>",
+        "description": "The participant this event is about.",
+        "required": true
+      },
+      {
+        "flags": "--measure <measure>",
+        "description": "What the participant did. One of: viewed, confirmed, issued, first_data.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier experiments report",
+    "domain": "experiments",
+    "summary": "Count the events of one experiment per measure inside a time window.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "experiment_report",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--experiment-id <id>",
+        "description": "The experiment to report on.",
+        "required": true
+      },
+      {
+        "flags": "--from <n>",
+        "description": "Start of the window, epoch milliseconds.",
+        "required": true
+      },
+      {
+        "flags": "--to <n>",
+        "description": "End of the window, epoch milliseconds, exclusive.",
         "required": true
       }
     ]
@@ -1895,7 +2030,7 @@
     "invocation": "carrier billing configure",
     "domain": "billing",
     "summary": "Configure your billing preferences: enable/disable overages, set billing thresholds (bill shock prevention), configure notification percentages, and set hard spending caps.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "configure_billing",
     "restMethod": null,
@@ -2014,7 +2149,7 @@
     "invocation": "carrier wallet topup",
     "domain": "wallet",
     "summary": "Create a Stripe Checkout link so a human can top up the Carrier prepaid wallet by card.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "wallet_topup_checkout",
     "restMethod": null,
@@ -2031,7 +2166,7 @@
     "invocation": "carrier wallet auto-topup",
     "domain": "wallet",
     "summary": "Charge the organisation's saved card off-session, right now, and credit the Carrier prepaid wallet with the pack.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "wallet_auto_topup",
     "restMethod": null,
@@ -2125,7 +2260,7 @@
     "invocation": "carrier stripe refund",
     "domain": "stripe",
     "summary": "Refund money to a customer on one charge in the operator's connected Stripe account.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "stripe_connect_refund",
     "restMethod": null,
@@ -2179,7 +2314,7 @@
     "invocation": "carrier radar approve",
     "domain": "radar",
     "summary": "Clear a Stripe Radar fraud review so the held charge is captured and the money is taken.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "radar_review_approve",
     "restMethod": null,
@@ -2201,7 +2336,7 @@
     "invocation": "carrier radar decline",
     "domain": "radar",
     "summary": "Always refuses and calls nothing: Stripe has no endpoint to decline a Radar review (its Reviews API only lists, retrieves and approves).",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "radar_review_decline",
     "restMethod": null,
@@ -2223,7 +2358,7 @@
     "invocation": "carrier radar rule-toggle",
     "domain": "radar",
     "summary": "Report a Stripe Radar rule's state. Stripe exposes no API to change it, so this changes nothing.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "radar_rule_toggle",
     "restMethod": null,
@@ -2245,7 +2380,7 @@
     "invocation": "carrier radar value-list add",
     "domain": "radar",
     "summary": "Add one value to an existing Stripe Radar value list, changing how every future charge is scored.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "radar_value_list_add",
     "restMethod": null,
@@ -2383,7 +2518,7 @@
     "invocation": "carrier agent reply",
     "domain": "agent",
     "summary": "Resumes a browser automation task that paused waiting for input.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "ui_agent_reply",
     "restMethod": null,
@@ -2427,7 +2562,7 @@
     "invocation": "carrier agent schedule create",
     "domain": "agent",
     "summary": "Creates a recurring Steel agent run on a cron schedule.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "ui_agent_schedule_create",
     "restMethod": null,
@@ -2454,7 +2589,7 @@
     "invocation": "carrier agent schedule pause",
     "domain": "agent",
     "summary": "Pauses an active Steel recurring schedule.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "ui_agent_schedule_pause",
     "restMethod": null,
@@ -2471,7 +2606,7 @@
     "invocation": "carrier agent schedule resume",
     "domain": "agent",
     "summary": "Resumes a paused Steel recurring schedule.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "ui_agent_schedule_resume",
     "restMethod": null,
@@ -2488,7 +2623,7 @@
     "invocation": "carrier agent schedule delete",
     "domain": "agent",
     "summary": "Permanently deletes a Steel recurring schedule.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "ui_agent_schedule_delete",
     "restMethod": null,
@@ -2608,7 +2743,7 @@
     "invocation": "carrier portal relay request",
     "domain": "portal",
     "summary": "Drafts the parent-reseller/support request for reseller relay flags that are visible but read-only in the OCS portal at the current account tier.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "ui_request_reseller_relay_change",
     "restMethod": null,
@@ -2890,7 +3025,7 @@
     "invocation": "carrier panels topup",
     "domain": "panels",
     "summary": "Adjust the OCS account balance behind one subscriber. Previews unless --preview false.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "balance_topup_form",
     "restMethod": null,
@@ -2917,7 +3052,7 @@
     "invocation": "carrier panels provision",
     "domain": "panels",
     "summary": "Step through the provisioning wizard. Pass --step confirm to execute; every earlier step only reads.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "provision_esim_wizard",
     "restMethod": null,
@@ -2971,7 +3106,7 @@
     "invocation": "carrier env rotate",
     "domain": "env",
     "summary": "Replace the stored eSIMVault API token with one you supply.",
-    "write": false,
+    "write": true,
     "transport": "mcp",
     "tool": "rotate_credentials",
     "restMethod": null,
