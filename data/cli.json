@@ -1549,7 +1549,7 @@
   {
     "invocation": "carrier intelligence marketing",
     "domain": "intelligence",
-    "summary": "Where subscribers and revenue concentrate, and which markets grow.",
+    "summary": "Regional ARPU from historical subscriber charges and catalogue coverage.",
     "write": false,
     "transport": "mcp",
     "tool": "marketing_intelligence",
@@ -1559,6 +1559,16 @@
       {
         "flags": "--account-id <id>",
         "description": "Report on a single account",
+        "required": false
+      },
+      {
+        "flags": "--start <date>",
+        "description": "Usage period start (YYYY-MM-DD, maximum seven inclusive days)",
+        "required": false
+      },
+      {
+        "flags": "--end <date>",
+        "description": "Usage period end (YYYY-MM-DD, default today UTC)",
         "required": false
       }
     ]
@@ -1898,6 +1908,11 @@
         "flags": "--external-ref <ref>",
         "description": "Your own reference for the claimant, 1 to 200 characters.",
         "required": true
+      },
+      {
+        "flags": "--entitlement-token <token>",
+        "description": "The right issued for this external_ref by create_benefit_entitlement, 1 to 200 characters. Required when the campaign requires a right.",
+        "required": false
       }
     ]
   },
