@@ -1549,7 +1549,7 @@
   {
     "invocation": "carrier intelligence marketing",
     "domain": "intelligence",
-    "summary": "Where subscribers and revenue concentrate, and which markets grow.",
+    "summary": "Regional ARPU from historical subscriber charges and catalogue coverage.",
     "write": false,
     "transport": "mcp",
     "tool": "marketing_intelligence",
@@ -1559,6 +1559,16 @@
       {
         "flags": "--account-id <id>",
         "description": "Report on a single account",
+        "required": false
+      },
+      {
+        "flags": "--start <date>",
+        "description": "Usage period start (YYYY-MM-DD, maximum seven inclusive days)",
+        "required": false
+      },
+      {
+        "flags": "--end <date>",
+        "description": "Usage period end (YYYY-MM-DD, default today UTC)",
         "required": false
       }
     ]
