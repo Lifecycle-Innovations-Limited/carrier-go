@@ -112,6 +112,28 @@ type ConnectivityUsageRecord struct {
 	Created    int64   `json:"created"`
 }
 
+// SandboxCarrier represents a simulated telecom network carrier.
+type SandboxCarrier struct {
+	ID                    string          `json:"id"`
+	Name                  string          `json:"name"`
+	Brand                 string          `json:"brand"`
+	Region                string          `json:"region"`
+	MCC                   string          `json:"mcc"`
+	MNC                   string          `json:"mnc"`
+	SupportedTechnologies []string        `json:"supported_technologies"`
+	TestICCIDPrefix       string          `json:"test_iccid_prefix"`
+	Features              map[string]bool `json:"features,omitempty"`
+	SamplePlans           []string        `json:"sample_plans,omitempty"`
+}
+
+// SimulateEventRequest is the payload for simulating a connectivity event.
+type SimulateEventRequest struct {
+	CarrierID string         `json:"carrier_id,omitempty"`
+	Type      string         `json:"type"`
+	ICCID     string         `json:"iccid,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+}
+
 type listEnvelope[T any] struct {
 	Object string `json:"object"`
 	Data   []T    `json:"data"`

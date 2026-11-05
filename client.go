@@ -15,7 +15,7 @@ import (
 
 const (
 	defaultBaseURL   = "https://api.carrier.llc"
-	version          = "0.1.25"
+	version          = "0.1.32"
 	maxResponseBytes = 2 << 20
 	defaultTimeout   = 30 * time.Second
 )
@@ -30,8 +30,11 @@ type Client struct {
 	Products         *Products
 	Plans            *Plans
 	WebhookEndpoints *WebhookEndpoints
-	Events           *Events
+	Events           *EventsService
 	UsageRecords     *UsageRecords
+	Subscribers      *SubscribersService
+	ESIMs            *ESIMsService
+	Sandbox          *SandboxService
 }
 
 // Option configures a Client.
@@ -79,6 +82,9 @@ func New(apiKey string, opts ...Option) (*Client, error) {
 	client.WebhookEndpoints = &WebhookEndpoints{client: client}
 	client.Events = &Events{client: client}
 	client.UsageRecords = &UsageRecords{client: client}
+	client.Subscribers = &SubscribersService{client: client}
+	client.ESIMs = &ESIMsService{client: client}
+	client.Sandbox = &SandboxService{client: client}
 	return client, nil
 }
 

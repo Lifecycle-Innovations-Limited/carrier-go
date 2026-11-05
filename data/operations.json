@@ -773,7 +773,7 @@
     "method": "POST",
     "path": "/v1/subscribers/{iccid}/sms",
     "tag": "Subscribers",
-    "summary": "Send an MT SMS to a subscriber (admin only)",
+    "summary": "Send an MT SMS to a subscriber",
     "security": "bearer",
     "body": true,
     "bodyRequired": true,
@@ -784,12 +784,7 @@
       }
     ],
     "queryParams": [],
-    "headerParams": [
-      {
-        "name": "X-Confirm-Token",
-        "required": false
-      }
-    ]
+    "headerParams": []
   },
   {
     "id": "fleet_health",
@@ -1575,7 +1570,7 @@
     "method": "POST",
     "path": "/v1/onboarding/ocs-connect",
     "tag": "Onboarding",
-    "summary": "Connect a BYO eSIMVault token (step 2)",
+    "summary": "Connect a BYO network token (step 2)",
     "security": "bearer",
     "body": true,
     "bodyRequired": true,
@@ -1949,6 +1944,19 @@
     "headerParams": []
   },
   {
+    "id": "ai_credit_balance",
+    "method": "GET",
+    "path": "/v1/ai/wallet",
+    "tag": "AI",
+    "summary": "Read your organization's AI credits in EUR",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "ai_chat",
     "method": "POST",
     "path": "/v1/ai/chat",
@@ -2180,6 +2188,32 @@
     "security": "bearer",
     "body": false,
     "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_sandbox_carriers",
+    "method": "GET",
+    "path": "/v1/connectivity/sandbox/carriers",
+    "tag": "Connectivity",
+    "summary": "List sandbox telecom carriers available for simulation",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "simulate_sandbox_event",
+    "method": "POST",
+    "path": "/v1/connectivity/sandbox/simulate-event",
+    "tag": "Connectivity",
+    "summary": "Simulate a carrier network or connectivity telemetry event",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
     "pathParams": [],
     "queryParams": [],
     "headerParams": []
