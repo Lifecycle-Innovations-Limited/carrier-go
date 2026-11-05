@@ -64,7 +64,7 @@ raw, err = client.Call(ctx, "create_connectivity_intent", carrier.CallParams{
 `Security` on each catalog entry is `bearer`, `public`, `internal`, or `storefront`. A customer API key is `bearer`. The two internal routes do not accept that key.
 
 ```go
-session, err := carrier.NewMCP(os.Getenv("ESIMVAULT_API_TOKEN"))
+session, err := carrier.NewMCP(os.Getenv("CARRIER_OCS_API_TOKEN"))
 tools, err := session.ListTools(ctx)
 result, err := session.CallTool(ctx, "list_subscribers", map[string]any{"limit": 5})
 
