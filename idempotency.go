@@ -7,6 +7,8 @@ import (
 
 var issuanceKeyPattern = regexp.MustCompile(`^[A-Za-z0-9][A-Za-z0-9_.:-]{0,199}$`)
 
+var intentIDPattern = regexp.MustCompile(`^cni_[0-9a-f]{32}$`)
+
 func isIssuance(method, path string) bool {
 	return method == "POST" && (path == "/v1/connectivity/intents" || path == "/v1/subscribers/issue-from-inventory")
 }

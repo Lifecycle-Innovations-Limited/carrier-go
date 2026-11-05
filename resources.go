@@ -44,6 +44,18 @@ type Events struct {
 	client *Client
 }
 
+// EventsService provides connectivity events and simulation.
+type EventsService = Events
+
+// Simulate simulates a carrier network or telemetry event.
+func (s *Events) Simulate(ctx context.Context, req SimulateEventRequest) (*ConnectivityEvent, error) {
+	var event ConnectivityEvent
+	if err := s.client.do(ctx, http.MethodPost, "/v1/connectivity/sandbox/simulate-event", nil, req, "", &event); err != nil {
+		return nil, err
+	}
+	return &event, nil
+}
+
 // List returns the newest events, at most 20. An empty intentID lists the account.
 func (s *Events) List(ctx context.Context, intentID string) ([]ConnectivityEvent, error) {
 	query := url.Values{}
@@ -109,4 +121,95 @@ func (s *UsageRecords) List(ctx context.Context, intentID string) ([]Connectivit
 	}
 	query := url.Values{"intent": []string{safe}}
 	return decodeList[ConnectivityUsageRecord](ctx, s.client, "/v1/connectivity/usage_records", query)
+}
+
+// SubscribersService manages subscriber profiles and fleet information.
+type SubscribersService struct {
+	client *Client
+}
+
+// List returns subscribers.
+func (s *SubscribersService) List(ctx context.Context) (map[string]any, error) {
+	var res map[string]any
+	if err := s.client.do(ctx, http.MethodGet, "/v1/subscribers", nil, nil, "", &res); err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+// Get returns one subscriber by ID or ICCID.
+func (s *SubscribersService) Get(ctx context.Context, id string) (map[string]any, error) {
+	safe, err := requireID(id, "subscriber")
+	if err != nil {
+		return nil, err
+	}
+	var res map[string]any
+	if err := s.client.do(ctx, http.MethodGet, "/v1/subscribers/"+safe, nil, nil, "", &res); err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+// ESIMsService manages eSIM profiles and intents.
+type ESIMsService struct {
+	client *Client
+}
+
+// List returns connectivity intents representing eSIM profiles.
+func (s *ESIMsService) List(ctx context.Context) ([]ConnectivityIntent, error) {
+	return decodeList[ConnectivityIntent](ctx, s.client, "/v1/connectivity/intents", nil)
+}
+
+// Get returns one eSIM profile by its intent ID (cni_ followed by 32 hex digits).
+// The API has no lookup by ICCID. The ICCID is on the returned ESIM.ICCID, so read it
+// from List or Retrieve. Anything that is not an intent ID fails before any request.
+func (s *ESIMsService) Get(ctx context.Context, intentID string) (*ConnectivityIntent, error) {
+	safe, err := requireID(intentID, "esim")
+	if err != nil {
+		return nil, err
+	}
+	if !intentIDPattern.MatchString(safe) {
+		return nil, invalidRequest("invalid_id", "esim lookup takes an intent id (cni_ and 32 hex digits). An ICCID is not accepted; read it from ESIM.ICCID.")
+	}
+	var intent ConnectivityIntent
+	if err := s.client.do(ctx, http.MethodGet, "/v1/connectivity/intents/"+safe, nil, nil, "", &intent); err != nil {
+		return nil, err
+	}
+	return &intent, nil
+}
+
+// SandboxService manages sandbox test telecom networks and simulation.
+type SandboxService struct {
+	client *Client
+}
+
+// ListCarriers returns the sandbox telecom networks available for simulation.
+func (s *SandboxService) ListCarriers(ctx context.Context) ([]SandboxCarrier, error) {
+	return decodeList[SandboxCarrier](ctx, s.client, "/v1/connectivity/sandbox/carriers", nil)
+}
+
+// SimulateEvent simulates a carrier network or telemetry event.
+func (s *SandboxService) SimulateEvent(ctx context.Context, req SimulateEventRequest) (*ConnectivityEvent, error) {
+	var event ConnectivityEvent
+	if err := s.client.do(ctx, http.MethodPost, "/v1/connectivity/sandbox/simulate-event", nil, req, "", &event); err != nil {
+		return nil, err
+	}
+	return &event, nil
+}
+
+// SimulateDataSession simulates a data usage session on a test eSIM.
+func (s *SandboxService) SimulateDataSession(ctx context.Context, iccid string, bytesUsed int64, durationSeconds ...int64) (*ConnectivityEvent, error) {
+	duration := int64(60)
+	if len(durationSeconds) > 0 {
+		duration = durationSeconds[0]
+	}
+	return s.SimulateEvent(ctx, SimulateEventRequest{
+		Type:  "usage.data_recorded",
+		ICCID: iccid,
+		Data: map[string]any{
+			"bytes_used":        bytesUsed,
+			"bytes_downlink":    bytesUsed,
+			"duration_seconds": duration,
+		},
+	})
 }
