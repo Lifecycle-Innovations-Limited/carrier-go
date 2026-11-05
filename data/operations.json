@@ -773,7 +773,7 @@
     "method": "POST",
     "path": "/v1/subscribers/{iccid}/sms",
     "tag": "Subscribers",
-    "summary": "Send an MT SMS to a subscriber (admin only)",
+    "summary": "Send an MT SMS to a subscriber",
     "security": "bearer",
     "body": true,
     "bodyRequired": true,
@@ -784,12 +784,7 @@
       }
     ],
     "queryParams": [],
-    "headerParams": [
-      {
-        "name": "X-Confirm-Token",
-        "required": false
-      }
-    ]
+    "headerParams": []
   },
   {
     "id": "fleet_health",
@@ -1575,7 +1570,7 @@
     "method": "POST",
     "path": "/v1/onboarding/ocs-connect",
     "tag": "Onboarding",
-    "summary": "Connect a BYO eSIMVault token (step 2)",
+    "summary": "Connect a BYO network token (step 2)",
     "security": "bearer",
     "body": true,
     "bodyRequired": true,
