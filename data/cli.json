@@ -1549,7 +1549,7 @@
   {
     "invocation": "carrier intelligence marketing",
     "domain": "intelligence",
-    "summary": "Where subscribers and revenue concentrate, and which markets grow.",
+    "summary": "Regional ARPU from historical subscriber charges and catalogue coverage.",
     "write": false,
     "transport": "mcp",
     "tool": "marketing_intelligence",
@@ -1559,6 +1559,16 @@
       {
         "flags": "--account-id <id>",
         "description": "Report on a single account",
+        "required": false
+      },
+      {
+        "flags": "--start <date>",
+        "description": "Usage period start (YYYY-MM-DD, maximum seven inclusive days)",
+        "required": false
+      },
+      {
+        "flags": "--end <date>",
+        "description": "Usage period end (YYYY-MM-DD, default today UTC)",
         "required": false
       }
     ]
@@ -1658,7 +1668,7 @@
   {
     "invocation": "carrier onboard connect",
     "domain": "onboard",
-    "summary": "Connect your own eSIMVault token (step 2, BYO). Verified against OCS, then stored encrypted; the token is never echoed back.",
+    "summary": "Connect your own network token (step 2, BYO). Verified against OCS, then stored encrypted; the token is never echoed back.",
     "write": true,
     "transport": "rest",
     "tool": null,
@@ -1667,7 +1677,7 @@
     "options": [
       {
         "flags": "--token <token>",
-        "description": "eSIMVault API token. A flag lands in shell history — prefer a leading space, or run this once from a fresh shell.",
+        "description": "Network API token. A flag lands in shell history — prefer a leading space, or run this once from a fresh shell.",
         "required": true
       }
     ]
@@ -1898,6 +1908,11 @@
         "flags": "--external-ref <ref>",
         "description": "Your own reference for the claimant, 1 to 200 characters.",
         "required": true
+      },
+      {
+        "flags": "--entitlement-token <token>",
+        "description": "The right issued for this external_ref by create_benefit_entitlement, 1 to 200 characters. Required when the campaign requires a right.",
+        "required": false
       }
     ]
   },
@@ -2077,6 +2092,17 @@
         "required": false
       }
     ]
+  },
+  {
+    "invocation": "carrier billing ai-credits",
+    "domain": "billing",
+    "summary": "Read your organization's AI credit wallet in EUR: balance_eur and available_eur.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "ai_credit_balance",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
   },
   {
     "invocation": "carrier billing credits",
@@ -3094,7 +3120,7 @@
   {
     "invocation": "carrier env credentials",
     "domain": "env",
-    "summary": "Report on the stored eSIMVault credential without changing it: whether a token is present, whether it is encrypted, how old it is, and whether rotation is recommended (over 90 days).",
+    "summary": "Report on the stored network credential without changing it: whether a token is present, whether it is encrypted, how old it is, and whether rotation is recommended (over 90 days).",
     "write": false,
     "transport": "mcp",
     "tool": "credential_status",
@@ -3105,7 +3131,7 @@
   {
     "invocation": "carrier env rotate",
     "domain": "env",
-    "summary": "Replace the stored eSIMVault API token with one you supply.",
+    "summary": "Replace the stored network API token with one you supply.",
     "write": true,
     "transport": "mcp",
     "tool": "rotate_credentials",
@@ -3114,7 +3140,7 @@
     "options": [
       {
         "flags": "--new-token <token>",
-        "description": "New eSIMVault API token to encrypt and store.",
+        "description": "New network API token to encrypt and store.",
         "required": true
       },
       {
