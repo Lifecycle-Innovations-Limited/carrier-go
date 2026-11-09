@@ -15,7 +15,7 @@ import (
 
 const (
 	defaultBaseURL   = "https://api.carrier.llc"
-	version          = "0.1.35"
+	version          = "0.1.36"
 	maxResponseBytes = 2 << 20
 	defaultTimeout   = 30 * time.Second
 )
@@ -156,7 +156,7 @@ func (c *Client) doRequest(ctx context.Context, method, path string, query url.V
 		}
 		return apiFailure(0, "network_error", err.Error(), "api_error")
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	raw, err := io.ReadAll(io.LimitReader(resp.Body, maxResponseBytes+1))
 	if err != nil {
 		if issuance {

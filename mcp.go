@@ -209,7 +209,7 @@ func (m *MCP) post(ctx context.Context, message map[string]any, notify bool, han
 	if err != nil {
 		return nil, apiFailure(0, "network_error", err.Error(), "api_error")
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	raw, err := io.ReadAll(io.LimitReader(resp.Body, maxResponseBytes+1))
 	if err != nil {
 		return nil, apiFailure(0, "network_error", err.Error(), "api_error")
