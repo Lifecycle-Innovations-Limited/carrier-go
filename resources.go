@@ -207,8 +207,8 @@ func (s *SandboxService) SimulateDataSession(ctx context.Context, iccid string, 
 		Type:  "usage.data_recorded",
 		ICCID: iccid,
 		Data: map[string]any{
-			"bytes_used":        bytesUsed,
-			"bytes_downlink":    bytesUsed,
+			"bytes_used":       bytesUsed,
+			"bytes_downlink":   bytesUsed,
 			"duration_seconds": duration,
 		},
 	})
