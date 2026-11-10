@@ -3601,6 +3601,46 @@
     "headerParams": []
   },
   {
+    "id": "plan_storefront_dns",
+    "method": "POST",
+    "path": "/v1/storefronts/{id}/domains/{hostname}/dns-plan",
+    "tag": "Storefront",
+    "summary": "The DNS records to add for the claimed hostname, with the real ownership value. Writes nothing. Carrier holds no registrar credentials, so the owner adds the records.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "hostname",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "verify_storefront",
+    "method": "GET",
+    "path": "/v1/storefronts/{id}/readiness",
+    "tag": "Storefront",
+    "summary": "Whether the storefront could go live now: the publish checks on its saved state. Writes nothing.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "verify_storefront_domain",
     "method": "POST",
     "path": "/v1/storefronts/{id}/domains/{hostname}/verify",
