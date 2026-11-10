@@ -3310,6 +3310,24 @@
     "headerParams": []
   },
   {
+    "id": "get_hosted_storefront_by_host",
+    "method": "GET",
+    "path": "/api/hosted/by-host/{host}",
+    "tag": "Storefront",
+    "summary": "Published hosted storefront served on a custom domain. Answers only for a verified, attached domain.",
+    "security": "public",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "host",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "get_hosted_storefront_plan_readiness",
     "method": "GET",
     "path": "/api/hosted/{slug}/plans/{planId}/readiness",
@@ -3517,6 +3535,109 @@
     "pathParams": [
       {
         "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_storefront_domains",
+    "method": "GET",
+    "path": "/v1/storefronts/{id}/domains",
+    "tag": "Storefront",
+    "summary": "The storefront's custom domain with its DNS records and status. At most one.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "attach_storefront_domain",
+    "method": "POST",
+    "path": "/v1/storefronts/{id}/domains",
+    "tag": "Storefront",
+    "summary": "Claim a hostname for the storefront. Returns the DNS records to add; nothing is served until verify succeeds.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": [
+      {
+        "name": "Idempotency-Key",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "plan_storefront_domain",
+    "method": "POST",
+    "path": "/v1/storefronts/{id}/domains/plan",
+    "tag": "Storefront",
+    "summary": "Check a hostname and preview the steps. Writes nothing.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "verify_storefront_domain",
+    "method": "POST",
+    "path": "/v1/storefronts/{id}/domains/{hostname}/verify",
+    "tag": "Storefront",
+    "summary": "Check the ownership record, attach the domain and check routing. The domain starts serving only when all three pass.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "hostname",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "detach_storefront_domain",
+    "method": "DELETE",
+    "path": "/v1/storefronts/{id}/domains/{hostname}",
+    "tag": "Storefront",
+    "summary": "Remove the custom domain. The storefront keeps its stores.carrier.llc address.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "hostname",
         "required": true
       }
     ],
