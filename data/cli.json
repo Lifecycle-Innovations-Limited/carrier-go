@@ -2183,7 +2183,7 @@
     "options": [
       {
         "flags": "--pack <pack>",
-        "description": "Pack id (pack_25/pack_50/pack_100/pack_500/pack_1000/pack_2500/pack_5000) or exact EUR-cents amount.",
+        "description": "Pack id (pack_25/pack_50/pack_100/pack_500/pack_1000/pack_2500/pack_5000) or exact USD-cents amount.",
         "required": false
       }
     ]
@@ -2200,7 +2200,7 @@
     "options": [
       {
         "flags": "--pack-cents <n>",
-        "description": "Override pack amount in EUR cents (must match a catalog pack).",
+        "description": "Override pack amount in USD cents (must match a catalog pack).",
         "required": false
       }
     ]
