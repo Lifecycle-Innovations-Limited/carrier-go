@@ -1948,7 +1948,7 @@
     "method": "GET",
     "path": "/v1/ai/wallet",
     "tag": "AI",
-    "summary": "Read your organization's AI credits in EUR",
+    "summary": "Read your organization's AI credits in USD",
     "security": "bearer",
     "body": false,
     "bodyRequired": false,
