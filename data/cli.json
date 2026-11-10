@@ -2096,7 +2096,7 @@
   {
     "invocation": "carrier billing ai-credits",
     "domain": "billing",
-    "summary": "Read your organization's AI credit wallet in EUR: balance_eur and available_eur.",
+    "summary": "Read your organization's AI credit wallet in USD: balance_usd and available_usd.",
     "write": false,
     "transport": "mcp",
     "tool": "ai_credit_balance",
@@ -2208,7 +2208,7 @@
   {
     "invocation": "carrier ai-wallet auto-topup",
     "domain": "ai-wallet",
-    "summary": "Read or change automatic EUR replenishment for the separate AI-credit wallet.",
+    "summary": "Read or change automatic USD replenishment for the separate AI-credit wallet.",
     "write": true,
     "transport": "mcp",
     "tool": "ai_wallet_auto_topup",
