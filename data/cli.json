@@ -1911,7 +1911,7 @@
       },
       {
         "flags": "--entitlement-token <token>",
-        "description": "The right issued for this external_ref by create_benefit_entitlement, 1 to 200 characters. Required when the campaign requires a right.",
+        "description": "The right issued for this external_ref by create_benefit_entitlement, 1 to 200 characters.",
         "required": false
       }
     ]
@@ -2183,7 +2183,7 @@
     "options": [
       {
         "flags": "--pack <pack>",
-        "description": "Pack id (pack_25/pack_50/pack_100/pack_500/pack_1000/pack_2500/pack_5000) or exact EUR-cents amount.",
+        "description": "Pack id (pack_25/pack_50/pack_100/pack_500/pack_1000/pack_2500/pack_5000) or exact USD-cents amount.",
         "required": false
       }
     ]
@@ -2200,7 +2200,7 @@
     "options": [
       {
         "flags": "--pack-cents <n>",
-        "description": "Override pack amount in EUR cents (must match a catalog pack).",
+        "description": "Override pack amount in USD cents (must match a catalog pack).",
         "required": false
       }
     ]
@@ -3306,6 +3306,467 @@
         "flags": "--mnc <mnc>",
         "description": "Mobile Network Code.",
         "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts list",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: GET /v1/storefronts.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_storefronts",
+    "restMethod": null,
+    "restPath": null,
+    "options": []
+  },
+  {
+    "invocation": "carrier storefronts get",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: GET /v1/storefronts/{storefront_id}.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "get_storefront",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts create",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: POST /v1/storefronts.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "create_storefront",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      },
+      {
+        "flags": "--idempotency-key <key>",
+        "description": "idempotency key (string).",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts update",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: PATCH /v1/storefronts/{storefront_id}.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "update_storefront",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      },
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      },
+      {
+        "flags": "--idempotency-key <key>",
+        "description": "idempotency key (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts unpublish",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: POST /v1/storefronts/{storefront_id}/unpublish.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "unpublish_storefront",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      },
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      },
+      {
+        "flags": "--idempotency-key <key>",
+        "description": "idempotency key (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts plan upsert",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: POST /v1/storefronts/{storefront_id}/plans.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "upsert_storefront_plan",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      },
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      },
+      {
+        "flags": "--idempotency-key <key>",
+        "description": "idempotency key (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts plan update",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: PATCH /v1/storefronts/{storefront_id}/plans/{slug}.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "update_storefront_plan",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      },
+      {
+        "flags": "--slug <slug>",
+        "description": "slug (string).",
+        "required": true
+      },
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      },
+      {
+        "flags": "--idempotency-key <key>",
+        "description": "idempotency key (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts orders",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: GET /v1/storefronts/orders.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_storefront_orders",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": false
+      },
+      {
+        "flags": "--status <status>",
+        "description": "status (string). One of: pending, provisioning, ready, failed.",
+        "required": false
+      },
+      {
+        "flags": "--limit <n>",
+        "description": "limit (number).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts publish-plan",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: POST /v1/storefronts/{storefront_id}/publish-plan.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "plan_storefront_publish",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      },
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      },
+      {
+        "flags": "--idempotency-key <key>",
+        "description": "idempotency key (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts readiness",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: GET /v1/storefronts/{storefront_id}/readiness.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "verify_storefront",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts domain list",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: GET /v1/storefronts/{storefront_id}/domains.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "list_storefront_domains",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts domain plan",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: POST /v1/storefronts/{storefront_id}/domains/plan.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "plan_storefront_domain",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      },
+      {
+        "flags": "--hostname <hostname>",
+        "description": "hostname (string).",
+        "required": true
+      },
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      },
+      {
+        "flags": "--idempotency-key <key>",
+        "description": "idempotency key (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts domain attach",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: POST /v1/storefronts/{storefront_id}/domains.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "attach_storefront_domain",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      },
+      {
+        "flags": "--hostname <hostname>",
+        "description": "hostname (string).",
+        "required": true
+      },
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      },
+      {
+        "flags": "--idempotency-key <key>",
+        "description": "idempotency key (string).",
+        "required": true
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts domain verify",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: POST /v1/storefronts/{storefront_id}/domains/{hostname}/verify.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "verify_storefront_domain",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      },
+      {
+        "flags": "--hostname <hostname>",
+        "description": "hostname (string).",
+        "required": true
+      },
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      },
+      {
+        "flags": "--idempotency-key <key>",
+        "description": "idempotency key (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts domain detach",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: DELETE /v1/storefronts/{storefront_id}/domains/{hostname}.",
+    "write": true,
+    "transport": "mcp",
+    "tool": "detach_storefront_domain",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      },
+      {
+        "flags": "--hostname <hostname>",
+        "description": "hostname (string).",
+        "required": true
+      },
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      }
+    ]
+  },
+  {
+    "invocation": "carrier storefronts domain dns-plan",
+    "domain": "storefronts",
+    "summary": "Call the caller's storefront operation: POST /v1/storefronts/{storefront_id}/domains/{hostname}/dns-plan.",
+    "write": false,
+    "transport": "mcp",
+    "tool": "plan_storefront_dns",
+    "restMethod": null,
+    "restPath": null,
+    "options": [
+      {
+        "flags": "--storefront-id <id>",
+        "description": "storefront id (string).",
+        "required": true
+      },
+      {
+        "flags": "--hostname <hostname>",
+        "description": "hostname (string).",
+        "required": true
+      },
+      {
+        "flags": "--input <input>",
+        "description": "input (json).",
+        "required": false
+      },
+      {
+        "flags": "--confirm-token <token>",
+        "description": "confirm token (string).",
+        "required": false
+      },
+      {
+        "flags": "--idempotency-key <key>",
+        "description": "idempotency key (string).",
+        "required": false
       }
     ]
   }
