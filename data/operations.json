@@ -1418,6 +1418,42 @@
     "headerParams": []
   },
   {
+    "id": "affiliates_me_report",
+    "method": "GET",
+    "path": "/v1/affiliates/me/report",
+    "tag": "Affiliates",
+    "summary": "Partner report: per referred org and month, gross charge to net margin to commission",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "period",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "partners_me_statement",
+    "method": "GET",
+    "path": "/v1/partners/me/statement",
+    "tag": "Partners",
+    "summary": "Partner statement: every managed org and month with net margin, 70% share, reserve and payable amount",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "period",
+        "required": false
+      }
+    ],
+    "headerParams": []
+  },
+  {
     "id": "affiliates_link",
     "method": "POST",
     "path": "/v1/affiliates/link",
@@ -3155,6 +3191,55 @@
     "headerParams": []
   },
   {
+    "id": "list_storefront_buyer_subscriptions",
+    "method": "GET",
+    "path": "/api/subscriptions",
+    "tag": "Storefront",
+    "summary": "List subscriptions one buyer holds on one shop",
+    "security": "storefront",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "storefront",
+        "required": true
+      },
+      {
+        "name": "email",
+        "required": true
+      }
+    ],
+    "headerParams": []
+  },
+  {
+    "id": "cancel_storefront_subscription",
+    "method": "POST",
+    "path": "/api/subscriptions/{subscriptionId}/cancel",
+    "tag": "Storefront",
+    "summary": "Cancel a buyer's subscription at period end",
+    "security": "storefront",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "subscriptionId",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "storefront",
+        "required": true
+      },
+      {
+        "name": "email",
+        "required": true
+      }
+    ],
+    "headerParams": []
+  },
+  {
     "id": "get_storefront_order_usage",
     "method": "GET",
     "path": "/api/orders/{orderId}/usage",
@@ -3296,13 +3381,35 @@
     "method": "GET",
     "path": "/api/hosted/{slug}",
     "tag": "Storefront",
-    "summary": "Published hosted storefront, including its sellable plans",
+    "summary": "Published hosted storefront, including its sellable plans and published content page titles",
     "security": "public",
     "body": false,
     "bodyRequired": false,
     "pathParams": [
       {
         "name": "slug",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "get_hosted_storefront_page",
+    "method": "GET",
+    "path": "/api/hosted/{slug}/pages/{pageSlug}",
+    "tag": "Storefront",
+    "summary": "One published content page of a published hosted storefront, with its markdown body",
+    "security": "public",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "slug",
+        "required": true
+      },
+      {
+        "name": "pageSlug",
         "required": true
       }
     ],
@@ -3433,6 +3540,24 @@
     "security": "bearer",
     "body": true,
     "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "delete_storefront",
+    "method": "DELETE",
+    "path": "/v1/storefronts/{id}",
+    "tag": "Storefront",
+    "summary": "Delete a hosted storefront and its plans. Refused (409) while the shop is live, has a custom domain attached, has sales history, or has plans and changed in the last 24 hours (an open checkout session can live that long).",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
     "pathParams": [
       {
         "name": "id",
@@ -3601,6 +3726,46 @@
     "headerParams": []
   },
   {
+    "id": "plan_storefront_dns",
+    "method": "POST",
+    "path": "/v1/storefronts/{id}/domains/{hostname}/dns-plan",
+    "tag": "Storefront",
+    "summary": "The DNS records to add for the claimed hostname, with the real ownership value. Writes nothing. Carrier holds no registrar credentials, so the owner adds the records.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "hostname",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "verify_storefront",
+    "method": "GET",
+    "path": "/v1/storefronts/{id}/readiness",
+    "tag": "Storefront",
+    "summary": "Whether the storefront could go live now: the publish checks on its saved state. Writes nothing.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
     "id": "verify_storefront_domain",
     "method": "POST",
     "path": "/v1/storefronts/{id}/domains/{hostname}/verify",
@@ -3638,6 +3803,86 @@
       },
       {
         "name": "hostname",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "list_storefront_pages",
+    "method": "GET",
+    "path": "/v1/storefronts/{id}/pages",
+    "tag": "Storefront",
+    "summary": "Every content page of the storefront, drafts included, in display order",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "upsert_storefront_page",
+    "method": "POST",
+    "path": "/v1/storefronts/{id}/pages",
+    "tag": "Storefront",
+    "summary": "Create a content page, or fully replace the page with the same address",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "update_storefront_page",
+    "method": "PATCH",
+    "path": "/v1/storefronts/{id}/pages/{slug}",
+    "tag": "Storefront",
+    "summary": "Edit one content page: title, markdown body, publish state or order. The address never changes.",
+    "security": "bearer",
+    "body": true,
+    "bodyRequired": true,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "slug",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "headerParams": []
+  },
+  {
+    "id": "delete_storefront_page",
+    "method": "DELETE",
+    "path": "/v1/storefronts/{id}/pages/{slug}",
+    "tag": "Storefront",
+    "summary": "Delete one content page. A published page disappears from the shop at once.",
+    "security": "bearer",
+    "body": false,
+    "bodyRequired": false,
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "slug",
         "required": true
       }
     ],
