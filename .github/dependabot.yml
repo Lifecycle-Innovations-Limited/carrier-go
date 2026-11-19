@@ -1,0 +1,33 @@
+# Grouped weekly Dependabot (org convention, HEA-6858 pattern: weekly on
+# Monday, minor/patch grouped, reviewer auroracapital). Added as part of the
+# CI/CD best-practices cleanup, audit 2026-11-19: this repo had no
+# Dependabot config, so version updates never ran for its ecosystems.
+version: 2
+updates:
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    reviewers:
+      - "auroracapital"
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    groups:
+      non-major:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+      major-bumps:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
